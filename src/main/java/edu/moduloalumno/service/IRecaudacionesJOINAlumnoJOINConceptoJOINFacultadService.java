@@ -21,6 +21,9 @@ public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService {
 	/*Met*/ 
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo);
 
+	/*Validados*/ 
+	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(String codigo);
+
 	/*new*/
 	List<CodigosporNomApe> getCodigoByNombre(String nomApe);
 	

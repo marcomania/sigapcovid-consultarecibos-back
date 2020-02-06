@@ -32,6 +32,8 @@ public class Recaudaciones implements Serializable {
     private Integer idProg;
     
     private String siglaProg;
+
+	private String observacion;
     
     public String getSiglaProg() {
     	return siglaProg;
@@ -51,6 +53,14 @@ public class Recaudaciones implements Serializable {
 
 	public Integer getIdAlum() {
 		return idAlum;
+	}
+
+	public String getObservacion(){
+		return observacion;
+	}
+
+	public void setObservacion(String observacion){
+		this.observacion=observacion;
 	}
 
 	public void setIdAlum(Integer idAlum) {
@@ -141,7 +151,7 @@ public class Recaudaciones implements Serializable {
 	public String toString() {		
 		return "Recaudaciones [idRec=" + idRec + ", idAlum=" + idAlum + ", codAlum=" + codAlum + ", idProg=" + idProg + ", siglaProg="+siglaProg + ", apeNom=" + apeNom + ", concepto=" + concepto
 				+ ", numero=" + numero + ", dni=" + dni + ", nombre=" + nombre + ", moneda=" + moneda + ", importe="
-				+ importe + ", fecha=" + fecha  + "]";
+				+ importe + ", observacion=" + observacion + ", fecha=" + fecha  + "]";
 
 		/*return "Recaudaciones [idRec=" + idRec + ", idAlum=" + idAlum + ", apeNom=" + apeNom + ", concepto=" + concepto
 				+ ", numero=" + numero + ", dni=" + dni + ", nombre=" + nombre + ", moneda=" + moneda + ", importe="

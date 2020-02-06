@@ -45,5 +45,6 @@ public interface IRecaudacionesService {
 	
 	//agregado por miguel
 	List<Recaudaciones> getRecaudacionesPendiengesEntreFechas(Date fechaInicial, Date fechaFinal);
+	List<Recaudaciones> getObservacionesEntreFechas(Date fechaInicial, Date fechaFinal);
 	List<Recaudaciones> getRecaudacionesPorNombre(String nombresApellido);
 }

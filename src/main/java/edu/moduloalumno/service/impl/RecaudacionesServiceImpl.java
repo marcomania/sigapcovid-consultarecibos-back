@@ -167,5 +167,11 @@ public class RecaudacionesServiceImpl implements IRecaudacionesService {
 		return recaudacionesList;
 	}
 
+	@Override
+	public List<Recaudaciones> getObservacionesEntreFechas(Date fechaInicial, Date fechaFinal){
+		List<Recaudaciones> recaudacionesList = recaudacionesDAO.getObservacionesEntreFechas(fechaInicial,
+				fechaFinal);
+		return recaudacionesList;
+	}
 }
 

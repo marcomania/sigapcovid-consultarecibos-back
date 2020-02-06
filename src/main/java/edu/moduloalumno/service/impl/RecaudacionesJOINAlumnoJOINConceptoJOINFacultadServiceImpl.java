@@ -73,6 +73,13 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> recaudacionesList = recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(codigo);
 		return recaudacionesList;
 	}
+
+	    @Override
+	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(String codigo) {
+
+		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> recaudacionesList = recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(codigo);
+		return recaudacionesList;
+	}
         
         @Override
 	public List<CodigosporNomApe> getCodigoByNombre(String nomApe) {

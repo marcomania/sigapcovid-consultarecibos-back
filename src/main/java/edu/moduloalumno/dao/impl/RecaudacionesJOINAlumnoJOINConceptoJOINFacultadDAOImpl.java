@@ -30,7 +30,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 
 	@Override //aqui
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getAllRecaudacionesJOINAlumnoJOINConceptoJOINFacultads() {	
-		String sql = "select r.id_rec,r.id_alum,rc.estado,a.ape_nom,r.ciclo,c.concepto,c.id_concepto,a.dni,r.numero,f.nombre,m.id_moneda,m.moneda, " + 
+		String sql = "select r.id_rec,r.id_alum,rc.estado,a.ape_nom,r.ciclo,c.concepto,c.id_concepto,ap.dni_m as dni,r.numero,f.nombre,m.id_moneda,m.moneda, " + 
 		"r.importe, r.fecha,ap.anio_ingreso,p.nom_programa, " + 
 		"p.id_programa, r.cod_alumno, r.observacion, r.validado, ec.ecivil_desc as estado_civil " + 
 		"from " + 
@@ -77,7 +77,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		logger.info("Facultadupdate id"+ idRecaudaciones);
 
 		String sql="select r.id_rec, r.id_alum, rc.estado, a.ape_nom, " +  
-		"c.concepto,r.ciclo,c.id_concepto,a.dni, r.numero, f.nombre, " + 
+		"c.concepto,r.ciclo,c.id_concepto,ap.dni_m as dni, r.numero, f.nombre, " + 
 		"r.moneda, r.importe, r.fecha,p.nom_programa ,p.id_programa, " + 
 		"p.sigla_programa, r.cod_alumno, r.observacion, r.validado, ec.ecivil_desc as estado_civil " + 
 		"from " + 
@@ -128,7 +128,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 
 		String sql="select r.id_rec, r.id_alum, rc.estado, " + 
 		"ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, " + 
-		"r.ciclo ,c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, m.id_moneda, " +  
+		"r.ciclo ,c.concepto,c.id_concepto,ap.dni_m as dni, r.numero, f.nombre, m.id_moneda, " +  
 		"m.moneda, r.importe, r.fecha,ap.anio_ingreso,p.nom_programa, " + 
 		"p.id_programa,p.sigla_programa, r.cod_alumno, r.observacion, " + 
 		"u.descripcion as descripcion_ubi, t.descripcion as descripcion_tipo, r.validado, ec.ecivil_desc as estado_civil " + 		
@@ -212,6 +212,37 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		return this.jdbcTemplate.query(sql, rowMapper, codigo);
 	}
 
+	 @Override
+		public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(String codigo) {		
+		
+		String sql="select r.id_rec, r.id_alum, rc.estado, " +  
+		"ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, " +  
+		"r.ciclo,c.concepto,c.id_concepto, ap.dni_m as dni, " +  
+		"r.numero, f.nombre,  m.id_moneda, m.moneda, r.importe, " +  
+		"COALESCE( s.fecha_equiv,r.fecha) as fecha,ap.anio_ingreso, " +  
+		"p.nom_programa, p.id_programa,p.sigla_programa, " +  
+		"r.cod_alumno, ec.ecivil_desc as estado_civil, r.observacion, " +
+		"u.descripcion as descripcion_ubi, t.descripcion as descripcion_tipo, r.validado " + 
+		"from recaudaciones r " +  
+		"inner join registro_carga rc on (rc.id_registro = r.id_registro) " +
+		"inner join alumno_programa ap on (ap.cod_alumno = r.cod_alumno) " +
+		"inner join estado_civil ec on (ap.ecivil_id = ec.ecivil_id) " +
+		"inner join programa p on (ap.id_programa = p.id_programa) " +
+		"inner join alumno a on (r.id_alum = a.id_alum) " + 
+		"inner join facultad f on (a.id_facultad = f.id_facultad) " +   
+		"inner join concepto c on (r.id_concepto = c.id_concepto) " +
+		"left outer join ubicacion u on (r.id_ubicacion = u.id_ubicacion) " +
+		"left outer join tipo t on (r.id_tipo = t.id_tipo) " +
+		"left outer join moneda m on (r.moneda = m.id_moneda) " +   
+		"left outer join sunat_sintipocambio s on (r.fecha = s.fecha) " +   
+		"where (validado is true) and to_tsquery(?) @@ to_tsvector(coalesce(ap.cod_alumno,'') || ' ') " +   
+		"and (c.id_clase_pagos = 2) " +   
+		"order by c.concepto, r.fecha";
+
+		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, codigo);
+	}
+
 /*new*/@Override
 	public List<CodigosporNomApe> getCodigoByNombre(String nomApe) {
 	String sql = "select ap.cod_alumno, " +    
@@ -256,7 +287,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		
 		String sql="select r.id_rec, r.id_alum, rc.estado,  " +   
 		"ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, " +   
-		"r.ciclo,c.concepto,c.id_concepto,a.dni, r.numero, f.nombre, m.id_moneda,  " +   
+		"r.ciclo,c.concepto,c.id_concepto,ap.dni_m as dni, r.numero, f.nombre, m.id_moneda,  " +   
 		"m.moneda, r.importe, r.fecha,ap.anio_ingreso,p.nom_programa,  " +   
 		"p.id_programa,p.sigla_programa, r.cod_alumno, r.observacion,  " + 
 		"u.descripcion as descripcion_ubi, t.descripcion as descripcion_tipo, r.validado, ec.ecivil_desc as estado_civil " + 				
@@ -277,7 +308,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		"left outer join moneda m  " +   
 		"on (m.id_moneda = r.moneda) " + 
 		"left outer join estado_civil ec on (ap.ecivil_id = ec.ecivil_id) " +
-		"where (c.concepto = ?) and to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'')) " +		
+		"where (validado is true) and (c.concepto = ?) and to_tsquery( ? ) @@ to_tsvector(coalesce(ap.cod_alumno,'')) " +		
 		"order by c.concepto, r.fecha";
 
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper();
@@ -289,7 +320,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		
 		String sql = "select r.id_rec, r.id_alum,rc.estado,  " +    
 		"ap.nom_alumno || ' ' || ap.ape_paterno || ' ' || ap.ape_materno as ape_nom, " + 
-		"r.ciclo ,c.concepto,c.id_concepto,a.dni,r.numero,  " + 
+		"r.ciclo ,c.concepto,c.id_concepto,ap.dni_m as dni,r.numero,  " + 
 		"f.nombre, m.id_moneda,m.moneda, r.importe, r.fecha, " + 
 		"ap.anio_ingreso,p.nom_programa, p.id_programa, " + 
 		"p.sigla_programa, r.cod_alumno, r.observacion,  " + 

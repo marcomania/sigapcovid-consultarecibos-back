@@ -44,4 +44,6 @@ public interface IRecaudacionesDAO {
 	//agregado por miguel
 	public List<Recaudaciones> getRecaudacionesPendiengesEntreFechas(Date fechaInicial, Date fechaFinal);
 	public List<Recaudaciones> getRecaudacionesPorNombre(String nombresApellido);
+	public List<Recaudaciones> getObservacionesEntreFechas(Date fechaInicial, Date fechaFinal);
+
 }

@@ -165,6 +165,42 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		logger.info("< getRecaudacionesByNomApe [Recaudaciones]");
 		return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(list, HttpStatus.OK);
 	}
+
+
+	/**/  @RequestMapping(value = "/listar_validados/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(@PathVariable("codigo") String codigo) {
+		logger.info("> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados [Recaudaciones]");
+
+		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> list = null;
+
+		try {
+
+			list = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(codigo);
+			if (list == null) {
+				list = new ArrayList<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>();
+			}
+			else {
+				for(RecaudacionesJOINAlumnoJOINConceptoJOINFacultad r:list) {
+					if(r.getMoneda().equals("113")) {
+						r.setImporte_tc(( (float) r.getImporte() )*floatformat.dolares_a_soles(r.getFecha().toString()).getCompra());					
+					}
+					else {
+						r.setImporte_tc(( (float) r.getImporte() )*1);
+					}
+					
+					r.setImporte_tc(floatformat.round(r.getImporte_tc(), 2));
+				}
+			}
+
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados [Recaudaciones]");
+		return new ResponseEntity<List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad>>(list, HttpStatus.OK);
+	}
+
   	/*
   	public PruebaTCambio dolares_a_soles(Date fecha) throws MalformedURLException {
   		PruebaTCambio p= null;
@@ -226,7 +262,29 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		logger.info("< getCodigoByNombre [Recaudaciones]");
 		return new ResponseEntity<List<CodigosporNomApe>>(list, HttpStatus.OK);
 	}       
+   //para login
 
+	@RequestMapping(value = "/listar_codigoslog/{nomApe}/{codAlumno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<CodigosporNomApe>> getCodigosByNombreCodAlumno(@PathVariable("nomApe") String nomApe,@PathVariable("codAlumno") String codAlumno) {
+		logger.info("> getCodigoByNombreCodAlumno [Recaudaciones]");
+
+		List<CodigosporNomApe> list = null;
+
+		try {
+
+			list = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.getCodigoByNombreCodAlumno(nomApe,codAlumno);
+			if (list == null) {
+				list = new ArrayList<CodigosporNomApe>();
+			}//950305235
+
+		} catch (Exception e) {
+			logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<List<CodigosporNomApe>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		logger.info("< getCodigoByNombreCodAlumno [Recaudaciones]");
+		return new ResponseEntity<List<CodigosporNomApe>>(list, HttpStatus.OK);
+	}
 	// abel tipo de cambio
 	
 	

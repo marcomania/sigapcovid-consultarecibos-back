@@ -110,7 +110,7 @@ public class AlumnoProgramaJOINProgramaJOINAlumnoDAOImpl implements IAlumnoProgr
 	
 	public List<Semestre> getSemestre() {
 		try {
-		String sql = "select distinct semestre from Matricula_cab order by semestre";
+		String sql = "select trim(nom_ciclo) as semestre from ciclo where estado is true order by 1";
 		RowMapper<Semestre> rowMapper = new SemestreRowMapper();
 		List<Semestre> semestre = jdbcTemplate.query(sql, rowMapper);
 		return semestre;
@@ -120,15 +120,15 @@ public class AlumnoProgramaJOINProgramaJOINAlumnoDAOImpl implements IAlumnoProgr
 		}			
 	}
 	
-	public List<AlumnoSemestre> getAlumnoSemestre(Integer semestre,String periodoinicial,String periodofinal) {
+	public List<AlumnoSemestre> getAlumnoSemestre(Integer semestre, String periodoinicial,String periodofinal) {
 		try {
-			logger.info(periodoinicial.substring(2, 4)+" "+periodofinal.substring(2, 4));
-		String sql = "select distinct (a.nom_alumno || ' ' || a.ape_paterno || ' ' || a.ape_materno) as nombre_completo,"
-				+ "	a.id_programa_presupuesto as presupuesto,m.cod_alumno as cod_alumno, max(m.semestre) as semestre from alumno_programa"
-				+ " a inner join matricula_cab m on a.cod_alumno=m.cod_alumno and semestre >= ? and semestre <= ? and a.id_programa=? "
-				+ "and substring(m.cod_alumno,0,3)>=? and substring(m.cod_alumno,0,3)<=? group by a.nom_alumno,a.ape_paterno,a.ape_materno,m.cod_alumno,a.id_programa_presupuesto";
+			logger.info(periodoinicial.substring(0, 4)+" "+periodofinal.substring(0, 4));
+		String sql = "select distinct (nom_alumno || ' ' || ape_paterno || ' ' || ape_materno) as nombre_completo,"
+				+ "	id_programa_presupuesto as presupuesto, cod_alumno, anio_ingreso as semestre from alumno_programa"
+				+ " where (id_programa= ?) and (CAST(substring(NULLIF(anio_ingreso,'0'),1,4) AS integer)  between ? and ?)";
+				
 		RowMapper<AlumnoSemestre> rowMapper = new AlumnoSemestreRowMapper();
-		List<AlumnoSemestre> alumnosemestre = jdbcTemplate.query(sql, rowMapper,periodoinicial,periodofinal,semestre,periodoinicial.substring(2, 4),periodofinal.substring(2, 4));
+		List<AlumnoSemestre> alumnosemestre = jdbcTemplate.query(sql, rowMapper,semestre,Integer.parseInt(periodoinicial.substring(0, 4)),Integer.parseInt(periodofinal.substring(0, 4)));
 		return alumnosemestre;
 		}
 		catch (EmptyResultDataAccessException e) {

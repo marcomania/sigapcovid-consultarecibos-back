@@ -197,9 +197,9 @@ public class AlumnoProgramaJOINProgramaJOINAlumnoController {
 		return new ResponseEntity<List<Semestre>>(semestre, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/alumnosemestres/{periodo_inicial}/{periodo_final}/{semestre}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/alumnosemestres/{semestre}/{periodo_inicial}/{periodo_final}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AlumnoSemestre>> getAlumnoSemestre(@PathVariable("semestre") Integer semestre,@PathVariable("periodo_inicial") String periodo_inicial,@PathVariable("periodo_final") String periodo_final) {
-		logger.info("> getAlumnoSemestres [AlumnoSemestres]");
+		logger.info("> getAlumnoSemestres [AlumnoSemestres]"+ semestre + periodo_inicial+ periodo_final );
 
 		List<AlumnoSemestre> alumnosemestre = null;
 		try {

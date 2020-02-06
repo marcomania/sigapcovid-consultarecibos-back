@@ -143,6 +143,7 @@ public class RecaudacionesDAOImpl implements IRecaudacionesDAO {
 				"f.nombre,  " + 
 				"r.moneda, " + 
 				"r.importe,  " + 
+				"r.observacion, " +
 				"r.fecha,  " + 
 				"r.cod_alumno as codAlum, " + 
 				"p.id_programa as idProg,   " + 
@@ -195,6 +196,7 @@ public class RecaudacionesDAOImpl implements IRecaudacionesDAO {
 				"f.nombre,  " +
 				"r.moneda, " +
 				"r.importe,  " +
+				"r.observacion, " +
 				"r.fecha,  " +
 				"r.cod_alumno as codAlum, " +
 				"r.id_programa as idProg,  " +
@@ -223,6 +225,7 @@ public class RecaudacionesDAOImpl implements IRecaudacionesDAO {
 				"f.nombre,  " + 
 				"r.moneda, " + 
 				"r.importe,  " + 
+				"r.observacion, " +
 				"r.fecha,  " + 
 				"r.cod_alumno as codAlum," + 
 				"r.id_programa as idProg,   " +
@@ -236,5 +239,35 @@ public class RecaudacionesDAOImpl implements IRecaudacionesDAO {
 				"order by r.id_concepto, r.fecha";
 		RowMapper<Recaudaciones> rowMapper = new RecaudacionesRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, nombresApellido);
+	}
+
+	@Override
+	public List<Recaudaciones> getObservacionesEntreFechas(Date fechaInicial, Date fechaFinal){
+	String sql = "select " +
+				"r.id_rec,  " +
+				"r.id_alum,  " +
+				"a.ape_nom,  " +
+				"c.concepto, " +
+				"a.dni,  " +
+				"r.numero,  " +
+				"f.nombre,  " +
+				"r.moneda, " +
+				"r.importe,  " +
+				"r.observacion, " +
+				"r.fecha,  " +
+				"r.cod_alumno as codAlum, " +
+				"r.id_programa as idProg,  " +
+				"p.sigla_programa as siglaProg "+
+				"from recaudaciones r  " +
+				"join alumno a on (r.id_alum = a.id_alum) " + 
+				"join concepto c on (r.id_concepto = c.id_concepto) " + 
+				"join facultad f on (a.id_facultad = f.id_facultad) " + 
+				"left join programa p on (p.id_programa = r.id_programa) " + 
+				"where (r.fecha between ? and ?) " +
+				"and length(trim(r.observacion))>10 " +
+				"order by r.fecha";
+
+		RowMapper<Recaudaciones> rowMapper = new RecaudacionesRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, fechaInicial, fechaFinal);
 	}
 }

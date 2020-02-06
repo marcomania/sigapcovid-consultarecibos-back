@@ -24,6 +24,7 @@ public class RecaudacionesRowMapper implements RowMapper<Recaudaciones> {
 		recaudaciones.setCodAlum(row.getString("codAlum"));	
 		recaudaciones.setIdProg(row.getInt("idProg"));		
 		recaudaciones.setSiglaProg(row.getString("siglaProg"));
+		recaudaciones.setObservacion(row.getString("observacion"));
 		return recaudaciones;
 	}
 }
