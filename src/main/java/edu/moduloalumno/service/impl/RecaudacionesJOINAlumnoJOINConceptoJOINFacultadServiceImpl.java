@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import edu.moduloalumno.dao.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO;
 import edu.moduloalumno.entity.CodigosporNomApe;
+import edu.moduloalumno.entity.RecaudacionesAlumnoConConcepto;
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
+import edu.moduloalumno.entity.RecaudacionesJoinAlumnoJoinConceptoJoinFacultadWithDescription;
 import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService;
 
 @Service
@@ -75,9 +77,9 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 	}
 
 	    @Override
-	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(String codigo) {
+	public List<RecaudacionesAlumnoConConcepto> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(String codigo) {
 
-		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> recaudacionesList = recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(codigo);
+		List<RecaudacionesAlumnoConConcepto> recaudacionesList = recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(codigo);
 		return recaudacionesList;
 	}
         
@@ -99,6 +101,13 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 	@Override
 	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConcepto(String concepto, String nomApe) {
 		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> recaudacionesList = recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConcepto(concepto, nomApe);
+		
+		return recaudacionesList;
+	}
+
+	@Override
+	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConceptoAll(String concepto, String nomApe) {
+		List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> recaudacionesList = recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConceptoAll(concepto, nomApe);
 		
 		return recaudacionesList;
 	}
@@ -174,9 +183,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadServiceImpl implemen
 	}
 	
 	@Override //nuevo
-	public boolean updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Integer id_concepto,String moneda,Date fecha,String recibo,int ciclo,int idRec, int importe, String ubicacion, String ctabanco, Boolean validado){
-		logger.info("Facultad Service"+fecha+" "+" "+recibo+" "+ciclo +" "+idRec);
-		return recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(id_concepto,moneda,fecha,recibo,ciclo,idRec, importe, ubicacion, ctabanco, validado);
+	public boolean updaterecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Integer id_concepto,String moneda,Date fecha,String recibo,int ciclo,int idRec, Double importe, String ubicacion, String ctabanco, Boolean validado,String repitencia,Integer id_tipo_recaudacion){
+		return recaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO.updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(id_concepto,moneda,fecha,recibo,ciclo,idRec, importe, ubicacion, ctabanco, validado,repitencia,id_tipo_recaudacion);
 
 	}
 

@@ -1,8 +1,12 @@
 package edu.moduloalumno.dao;
 
+import java.io.ByteArrayInputStream;
 import java.util.Date;
 import java.util.List;
 
+import edu.moduloalumno.entity.CuentasPorCobrar;
+import edu.moduloalumno.entity.CuentasPorCobrar2;
+import edu.moduloalumno.entity.DeudoresPosgradoMasInfo;
 import edu.moduloalumno.entity.Recaudaciones;
 
 public interface IRecaudacionesDAO {
@@ -45,5 +49,9 @@ public interface IRecaudacionesDAO {
 	public List<Recaudaciones> getRecaudacionesPendiengesEntreFechas(Date fechaInicial, Date fechaFinal);
 	public List<Recaudaciones> getRecaudacionesPorNombre(String nombresApellido);
 	public List<Recaudaciones> getObservacionesEntreFechas(Date fechaInicial, Date fechaFinal);
-
+	
+	//agregado por rolando
+	public List<CuentasPorCobrar> getCuentasPorCobrar(String fechaInicial,String fechaFinal);
+	
+	public List<DeudoresPosgradoMasInfo> getCuentasPorCobrar2(String fechaInicial,String fechaFinal);
 }

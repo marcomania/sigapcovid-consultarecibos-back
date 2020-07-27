@@ -20,6 +20,7 @@ public class BeneficioReporte_RowMapper implements RowMapper<BeneficioReporteCic
 		br.setD_epg(rs.getInt("d_epg"));
 		br.setD_upg(rs.getFloat("d_upg"));
 		br.setTipo(rs.getString("tipo"));
+		
 		return br;
 	}
 

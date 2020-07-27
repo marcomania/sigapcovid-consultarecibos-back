@@ -130,6 +130,7 @@ public class AlumnoBeneficioDAOImpl implements IAlumnoBeneficioDAO{
 	@Override
 	public BeneficioReporteCiclo funcionDescuento_(String codigo, float descuento, Integer id_programa) {
 		try {
+			
 			String sql = "select * from fn_beneficio_2(?,?,?);";
 			RowMapper<BeneficioReporteCiclo> rowMapper = new BeneficioReporte_RowMapper();
 			BeneficioReporteCiclo br = jdbcTemplate.queryForObject(sql, rowMapper, codigo,descuento,id_programa);

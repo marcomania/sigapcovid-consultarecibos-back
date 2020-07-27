@@ -1,9 +1,23 @@
 spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: UPG.FISI@unmsm.edu.pe
+    password: stevejobsapple
+    
+    
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  
   datasource:
-    driverClassName: org.postgresql.Driver    
-    url: jdbc:postgresql://67.205.143.180/tcs2
-    username: modulo2
-    password: modulo2
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://67.205.143.180/tcs6
+    username: modulo4
+    password: modulo4
 
 server:
    port: 8080
@@ -18,3 +32,6 @@ eureka:
 
 banner:
   location: classpath:/example/banner.txt
+ 
+spring.mvc.contentnegotiation.media-types.xlsx : application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+

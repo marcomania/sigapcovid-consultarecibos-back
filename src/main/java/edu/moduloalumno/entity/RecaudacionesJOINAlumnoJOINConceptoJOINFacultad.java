@@ -4,6 +4,12 @@ import java.util.Date;
 
 public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 	
+	private Integer r_id_tipo_recaudacion;
+	
+	private Integer c_id_tipo_recaudacion;
+	
+	private String descripcion_recaudacion;
+	
 	private Integer idRec;
 	
 	private Integer idAlum;
@@ -51,8 +57,59 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
     private String estado_civil;
 	
 	private boolean validado;
+	
+	private String repitencia;
+	
+	private String id_tip_grado;
+	
+	private Integer id_tipo_recaudacion;
+
+	private String observacion;
+	
+	private String observacion_upg;
+	
     
-    public String getEstado() {
+    public Integer getR_id_tipo_recaudacion() {
+		return r_id_tipo_recaudacion;
+	}
+
+	public void setR_id_tipo_recaudacion(Integer r_id_tipo_recaudacion) {
+		this.r_id_tipo_recaudacion = r_id_tipo_recaudacion;
+	}
+
+	public Integer getC_id_tipo_recaudacion() {
+		return c_id_tipo_recaudacion;
+	}
+
+	public void setC_id_tipo_recaudacion(Integer c_id_tipo_recaudacion) {
+		this.c_id_tipo_recaudacion = c_id_tipo_recaudacion;
+	}
+
+	public String getDescripcion_recaudacion() {
+		return descripcion_recaudacion;
+	}
+
+	public void setDescripcion_recaudacion(String descripcion_recaudacion) {
+		this.descripcion_recaudacion = descripcion_recaudacion;
+	}
+
+	public String getId_tip_grado() {
+		return id_tip_grado;
+	}
+
+	public void setId_tip_grado(String id_tip_grado) {
+		this.id_tip_grado = id_tip_grado;
+	}
+
+	public String getRepitencia() {
+		return repitencia;
+	}
+
+	public void setRepitencia(String repitencia) {
+		this.repitencia = repitencia;
+	}
+
+	public String getEstado() {
 		return estado;
 	}
 
@@ -60,7 +117,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 		this.estado = estado;
 	}
 
-	private String observacion;
+	
     
 
 	public Integer getIdRec() {
@@ -281,16 +338,49 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultad {
 	public void setEstado_civil(String estado_civil) {
 		this.estado_civil = estado_civil;
 	}
+
 	
-	@Override
-	public String toString() {
-		return "RecaudacionesJOINAlumnoJOINConceptoJOINFacultad [idRec=" + idRec + ", idAlum=" + idAlum + ", apeNom="
-				+ apeNom + ", concepto=" + concepto + ", idconcepto=" + idconcepto + ", numero=" + numero + ", dni="
-				+ dni + ", nombre=" + nombre + ", moneda=" + moneda + ", importe=" + importe + ", fecha=" + fecha
-				+ ", idPrograma=" + idPrograma + ", nomPrograma=" + nomPrograma + ", codAlumno=" + codAlumno
-				+ ", observacion=" + observacion + ", validado=" + validado +"]";
+	
+	public Integer getId_tipo_recaudacion() {
+		return id_tipo_recaudacion;
 	}
 
+	public void setId_tipo_recaudacion(Integer id_tipo_recaudacion) {
+		this.id_tipo_recaudacion = id_tipo_recaudacion;
+	}
+
+	
+	
+	public String getObservacion_upg() {
+		return observacion_upg;
+	}
+
+	public void setObservacion_upg(String observacion_upg) {
+		this.observacion_upg = observacion_upg;
+	}
+
+	@Override
+	public String toString() {
+		return "RecaudacionesJOINAlumnoJOINConceptoJOINFacultad [r_id_tipo_recaudacion=" + r_id_tipo_recaudacion
+				+ ", c_id_tipo_recaudacion=" + c_id_tipo_recaudacion + ", descripcion_recaudacion="
+				+ descripcion_recaudacion + ", idRec=" + idRec + ", idAlum=" + idAlum + ", apeNom=" + apeNom
+				+ ", ciclo=" + ciclo + ", concepto=" + concepto + ", idconcepto=" + idconcepto + ", numero=" + numero
+				+ ", dni=" + dni + ", nombre=" + nombre + ", moneda=" + moneda + ", moneda2=" + moneda2 + ", importe="
+				+ importe + ", importe_tc=" + importe_tc + ", fecha=" + fecha + ", anio_ingreso=" + anio_ingreso
+				+ ", idPrograma=" + idPrograma + ", nomPrograma=" + nomPrograma + ", sigla_programa=" + sigla_programa
+				+ ", codAlumno=" + codAlumno + ", estado=" + estado + ", descripcion_ubi=" + descripcion_ubi
+				+ ", descripcion_tipo=" + descripcion_tipo + ", estado_civil=" + estado_civil + ", validado=" + validado
+				+ ", repitencia=" + repitencia + ", id_tip_grado=" + id_tip_grado + ", id_tipo_recaudacion="
+				+ id_tipo_recaudacion + ", observacion=" + observacion + ", observacion_upg=" + observacion_upg + "]";
+	}
+
+
+	
+
+	
+	
+	
+	
 	
 
 	

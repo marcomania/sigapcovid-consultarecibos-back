@@ -1,5 +1,6 @@
 package edu.moduloalumno.api;
 
+import java.io.ByteArrayInputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.moduloalumno.entity.CuentasPorCobrar;
+import edu.moduloalumno.entity.CuentasPorCobrar2;
+import edu.moduloalumno.entity.DeudoresPosgradoMasInfo;
 import edu.moduloalumno.entity.Recaudaciones;
 import edu.moduloalumno.model.Filtro;
 import edu.moduloalumno.service.IRecaudacionesService;
@@ -131,7 +137,8 @@ public class RecaudacionesController {
 		logger.info("< getRecaudacionesByStartDateBetween [Recaudaciones]");
 		return new ResponseEntity<List<Recaudaciones>>(list, HttpStatus.OK);
 	}
-
+	
+	
 	@RequestMapping(value = "/listar/{nom_ape}/{fechaInicial}/{fechaFinal}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Recaudaciones>> getRecaudacionesByNomApeStartDateBetween(@PathVariable("nom_ape") String nom_ape,
 			@PathVariable("fechaInicial") String fechaInicial, @PathVariable("fechaFinal") String fechaFinal) {
@@ -339,4 +346,86 @@ public class RecaudacionesController {
 //			logger.info("< getRecaudacionesByStartDateBetween [Recaudaciones]");
 			return new ResponseEntity<List<Recaudaciones>>(list, HttpStatus.OK);
 		}
+		
+		@RequestMapping(value="/cuentasPorCobrar/{fechaInicial}/{fechaFinal}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<List<CuentasPorCobrar>> getCuentasPorCobrar(@PathVariable("fechaInicial") String fechaInicial,@PathVariable("fechaFinal") String fechaFinal){
+			System.out.println("Entro a cuentas por cobrar");
+			
+			List<CuentasPorCobrar> list=null;
+			Date fInicial;
+			Date fFinal;
+			DateFormat formateador=new SimpleDateFormat("yyyy-MM-dd");
+			
+			try {
+				fInicial=formateador.parse(fechaFinal);
+				System.out.println(fInicial);
+				fFinal=formateador.parse(fechaFinal);
+				System.out.println(fFinal);
+				
+				list=recaudacionesService.getCuentasPorCobrar(fechaInicial.substring(0, 4),fechaFinal.substring(0,4));
+				System.out.println(list);
+				if(list==null) {
+					list=new ArrayList<CuentasPorCobrar>();
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				return new ResponseEntity<List<CuentasPorCobrar>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			
+			return new ResponseEntity<List<CuentasPorCobrar>>(list,HttpStatus.OK);
+		}
+		/*Esta es la segunda version de cuentas por cobrar (CPCv2)*/
+		@RequestMapping(value="/cuentasPorCobrar2/{fechaInicial}/{fechaFinal}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<List<DeudoresPosgradoMasInfo>> getCuentasPorCobrar2(@PathVariable("fechaInicial") String fechaInicial,@PathVariable("fechaFinal") String fechaFinal){
+			System.out.println("Entro a cuentas por cobrar");
+			
+			List<DeudoresPosgradoMasInfo> list=null;
+			
+			try {	
+				
+				list=recaudacionesService.getCuentasPorCobrar2(fechaInicial.substring(0, 4),fechaFinal.substring(0,4));
+				System.out.println(list);
+				if(list==null) {
+					list=new ArrayList<DeudoresPosgradoMasInfo>();
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				System.out.println("Entro al catch");
+				return new ResponseEntity<List<DeudoresPosgradoMasInfo>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			
+			return new ResponseEntity<List<DeudoresPosgradoMasInfo>>(list,HttpStatus.OK);
+		}
+		
+		/*Fin de la segunda version de cuentas por cobrar (CPCv2)*/
+		
+		@RequestMapping(value="/cuentasPorCobrar/exportExcel/{fechaInicial}/{fechaFinal}",method=RequestMethod.GET)
+		public  ResponseEntity<InputStreamResource> exportExcel(@PathVariable("fechaInicial") String fechaInicial,@PathVariable("fechaFinal") String fechaFinal) throws Exception{
+			
+			ByteArrayInputStream stream = recaudacionesService.exportAllData(fechaInicial.substring(0, 4), fechaFinal.substring(0, 4));
+
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Disposition", "attachment; filename=recaudaciones.xls");
+
+			return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
+			
+		}
+		
+		
+		@RequestMapping(value="/cuentasPorCobrar2/exportExcelMasInfoPersonal/{fechaInicial}/{fechaFinal}",method=RequestMethod.GET)
+		public  ResponseEntity<InputStreamResource> exportExcelMasInfoPersonal(@PathVariable("fechaInicial") String fechaInicial,@PathVariable("fechaFinal") String fechaFinal) throws Exception{
+			
+			ByteArrayInputStream stream = recaudacionesService.exportAllDataMasInfo(fechaInicial.substring(0, 4), fechaFinal.substring(0, 4));
+
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Disposition", "attachment; filename=deudasMasInfo.xls");
+
+			return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
+			
+		}
+		
+		
+		
+		
+		
 }

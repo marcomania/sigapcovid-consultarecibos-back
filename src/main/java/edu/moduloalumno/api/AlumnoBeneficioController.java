@@ -213,7 +213,7 @@ public class AlumnoBeneficioController {
 				if(idx == 1) {	
 					
 					breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento(codigo),id_programa);
-					
+					logger.info("el reporte beneficio es ->"+breporte.toString());
 					// dos decimales
 					breporte.setD_total(floatformat.round(breporte.getD_total(), 2));
 					breporte.setD_upg(floatformat.round(breporte.getD_upg(), 2));
@@ -246,27 +246,17 @@ public class AlumnoBeneficioController {
 	}
 	
 	@RequestMapping(value = "/breporte_ci/{codigo}/{id_programa}/{idx}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<BeneficioReporteCiclo> getBeneficioReporte_Ciclo(@PathVariable("codigo") String codigo,@PathVariable("id_programa") Integer id_programa, @PathVariable("idx") Integer idx) {
+	public ResponseEntity<BeneficioReporteCredito> getBeneficioReporte_Ciclo(@PathVariable("codigo") String codigo,@PathVariable("id_programa") Integer id_programa, @PathVariable("idx") Integer idx) {
 		logger.info(">> getBeneficio ReporteCICLO<<");
+		//BeneficioReporteCiclo
+		//BeneficioReporteCiclo bcreporte = null;
+		BeneficioReporteCredito breporte = null;
 		
-		BeneficioReporteCiclo bcreporte = null;
+		try {					
 		
-	//	BeneficioReporteCiclo b = new BeneficioReporteCiclo(); //objeto de prueba 
-		
-		try {
-			/*
-			b.setCiclo(1000);
-			b.setD_ciclo(800);
-			b.setEpg(145);
-			b.setUpg(789);
-			b.setTipo("por ciclo");
-			b.setD_epg(144);
-			b.setD_upg(700);
-			
-			
-			bcreporte = b;*/
-			if(idx == 2) {
-				bcreporte = alumnobeneficioservice.funcionDescuento_(codigo,descuento(codigo),id_programa);
+			/*if(idx == 2) {
+				//bcreporte = alumnobeneficioservice.funcionDescuento_(codigo,descuento(codigo),id_programa);
+				bcreporte = alumnobeneficioservice.funcionDescuento(codigo,descuento(codigo),id_programa);
 				bcreporte.setD_Total(floatformat.round(bcreporte.getD_upg()+bcreporte.getD_epg()+bcreporte.getD_ciclo(), 2));
 				bcreporte.setTotal(bcreporte.getEpg()+bcreporte.getUpg()+bcreporte.getCiclo());
 			}
@@ -276,16 +266,40 @@ public class AlumnoBeneficioController {
 				bcreporte.setTotal(bcreporte.getEpg()+bcreporte.getUpg()+bcreporte.getCiclo());
 			}
 			
-			logger.error("Breporte: " + bcreporte);				
+			logger.error("Breporte: " + bcreporte);*/
+			if(idx == 2) {	
+					
+					breporte = alumnobeneficioservice.funcionDescuento(codigo,descuento(codigo),id_programa);
+					
+					// dos decimales
+					breporte.setD_total(floatformat.round(breporte.getD_total(), 2));
+					breporte.setD_upg(floatformat.round(breporte.getD_upg(), 2));
+					
+					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
+					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
+					
+					breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*descuento(codigo)),2));
+					
+					logger.error("Breporte: " + breporte);
+				}
+				else {
+					//sin beneficio
+					breporte = alumnobeneficioservice.funcionDescuento(codigo,0,id_programa);
+					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
+					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
+					breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*0),2));
+					
+					logger.error("Breporte: " + breporte);
+				}
 					
 		} catch (Exception e) {
 			
 			logger.error("Unexpected Exception caught." + e.getMessage());
-			return new ResponseEntity<BeneficioReporteCiclo>(bcreporte, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<BeneficioReporteCredito>(breporte, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		logger.info("< alumnobeneficio");
-		return new ResponseEntity<BeneficioReporteCiclo>(bcreporte, HttpStatus.OK);
+		return new ResponseEntity<BeneficioReporteCredito>(breporte, HttpStatus.OK);
 	}
 	
 	

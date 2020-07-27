@@ -10,6 +10,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper implements
 	@Override
 	public RecaudacionesJOINAlumnoJOINConceptoJOINFacultad mapRow(ResultSet row, int rowNum) throws SQLException {
 		RecaudacionesJOINAlumnoJOINConceptoJOINFacultad recaudacionesJOINAlumnoJOINConceptoJOINFacultad = new RecaudacionesJOINAlumnoJOINConceptoJOINFacultad();
+		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setRepitencia(row.getString("repitencia"));
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setIdRec(row.getInt("id_rec"));
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setIdAlum(row.getInt("id_alum"));
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setApeNom(row.getString("ape_nom"));
@@ -34,6 +35,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadRowMapper implements
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setDescripcion_tipo(row.getString("descripcion_tipo"));
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setValidado(row.getBoolean("validado"));
 		recaudacionesJOINAlumnoJOINConceptoJOINFacultad.setEstado_civil(row.getString("estado_civil"));
+		
 		return recaudacionesJOINAlumnoJOINConceptoJOINFacultad;
 	}
 }

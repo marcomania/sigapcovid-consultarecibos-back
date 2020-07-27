@@ -29,6 +29,8 @@ public class AlumnoMseDAOImpl implements IAlumnoMseDAO {
 	public AlumnoMse getAlumnoByCod(String codAlum) {
 		//String sql = "SELECT dni_m, ape_paterno, ape_materno, nom_alumno, nac_fecha, ..., ..., telefono, telefono_movil, correo_personal, correo  FROM alumno_programa WHERE cod_alumno = ?";
 		String sql = "SELECT cod_alumno, dni_m, ape_paterno, ape_materno, nom_alumno, nac_fecha, telefono, telefono_movil, correo_personal, correo FROM alumno_programa WHERE cod_alumno = '"+codAlum+"'";
+		
+		System.out.println(sql);
 		//RowMapper<Alumno2> rowMapper = new BeanPropertyRowMapper<Alumno2>(Alumno2.class);
 		RowMapper<AlumnoMse> rowMapper = new AlumnoMseRowMapper();
 		AlumnoMse a = this.jdbcTemplate.query(sql, rowMapper).get(0);
@@ -43,8 +45,8 @@ public class AlumnoMseDAOImpl implements IAlumnoMseDAO {
 				+ "ape_paterno = '"+alumno.getApellidoPaterno()+"'"
 				+ ", ape_materno = '"+alumno.getApellidoMaterno()+"'"
 				+ ", nom_alumno = '"+alumno.getNombre()+"'"
+				+ ", dni_m = '"+alumno.getDni()+"'"
 				+ ", nac_fecha = ?"
-				
 				+ ", telefono = ?"
 				+ ", telefono_movil = '"+alumno.getTelefonoCelular()+"'"
 				+ ", correo_personal = '"+alumno.getCorreoPersonal()+"'"
@@ -60,7 +62,7 @@ public class AlumnoMseDAOImpl implements IAlumnoMseDAO {
 	@Override
 	public List<ConProgramaPorAlumno> consultaProgramaPorAlumno(String codAlumno) {
 		//String sql = "select a.cod_alumno , a.anio_ingreso, m.nom_programa , m.sigla_programa from programa m inner join alumno_programa a on m.id_programa = a.id_programa where a.dni_m = '25748054'";
-		String sql = "select a.cod_alumno , a.anio_ingreso, m.nom_programa , m.sigla_programa from programa m inner join alumno_programa a on m.id_programa = a.id_programa where a.dni_m = '"+codAlumno+"'";
+		String sql = "select a.cod_alumno , a.anio_ingreso, m.nom_programa , m.sigla_programa , m.id_programa from programa m inner join alumno_programa a on m.id_programa = a.id_programa where a.dni_m = '"+codAlumno+"'";
 		System.out.println("CODIGO SQL = "+ sql);
 		RowMapper<ConProgramaPorAlumno> rowMapper = new ConProgramaPorAlumnoRowMapper();
 		List<ConProgramaPorAlumno> a = this.jdbcTemplate.query(sql, rowMapper);

@@ -1,10 +1,13 @@
 package edu.moduloalumno.dao;
 
 import edu.moduloalumno.entity.CodigosporNomApe;
+import edu.moduloalumno.entity.RecaudacionesAlumnoConConcepto;
+
 import java.util.Date;
 import java.util.List;
 
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
+import edu.moduloalumno.entity.RecaudacionesJoinAlumnoJoinConceptoJoinFacultadWithDescription;
 
 public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO {
 
@@ -20,9 +23,10 @@ public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO {
 	
     List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo);
 
-    List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(String codigo);
+    List<RecaudacionesAlumnoConConcepto> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(String codigo);
         
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConcepto(String concepto, String nomApe);
+	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeConceptoAll(String concepto, String nomApe);																																						 
 	
 	List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByNomApeRecibo( String recibo, String nomApe);
 	
@@ -30,7 +34,7 @@ public interface IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAO {
 	
 	List<CodigosporNomApe> getCodigoByNombreCodAlumno(String nomApe, String codAlumno); //para login																								 
     
-	boolean updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Integer id_concepto,String moneda,Date fecha, String recibo,int ciclo,int idRec, int importe, String ubicacion, String ctabanco, Boolean validado);
+	boolean updateRecaudacionesJOINAlumnoJOINConceptoJOINFacultad(Integer id_concepto,String moneda,Date fecha, String recibo,int ciclo,int idRec, Double importe, String ubicacion, String ctabanco, Boolean validado,String repitencia,Integer id_tipo_recaudacion);
 	
 	boolean insertObservacion(String observacion,Integer idrec);
         
