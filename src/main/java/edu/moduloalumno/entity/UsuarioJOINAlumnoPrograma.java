@@ -33,7 +33,7 @@ public class UsuarioJOINAlumnoPrograma {
 		this.pass = pass;
 		this.codAlumno = codAlumno;
 		this.apePaterno = apePaterno;
-		this.apePaterno = apeMaterno;
+		this.apeMaterno = apeMaterno;
 		this.nomAlumno = nomAlumno;
 		this.dniM = dniM;
 		this.mail = mail;

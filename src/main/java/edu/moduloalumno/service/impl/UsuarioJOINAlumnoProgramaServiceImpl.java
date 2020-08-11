@@ -18,8 +18,8 @@ public class UsuarioJOINAlumnoProgramaServiceImpl implements IUsuarioJOINAlumnoP
 	private IUsuarioJOINAlumnoProgramaDAO usuarioJOINAlumnoProgramaDAO;
 
 	@Override
-	public UsuarioJOINAlumnoPrograma getUsuarioJOINAlumnoProgramaByUserPass(String pass, String userName) {
-		UsuarioJOINAlumnoPrograma usuarioJOINAlumnoPrograma = usuarioJOINAlumnoProgramaDAO.getUsuarioJOINAlumnoProgramaByUserPass(pass, userName);
+	public UsuarioJOINAlumnoPrograma getUsuarioJOINAlumnoProgramaByUserPass(String userName, String pass) {
+		UsuarioJOINAlumnoPrograma usuarioJOINAlumnoPrograma = usuarioJOINAlumnoProgramaDAO.getUsuarioJOINAlumnoProgramaByUserPass(userName, pass);
 		return usuarioJOINAlumnoPrograma;
 	}
 	
