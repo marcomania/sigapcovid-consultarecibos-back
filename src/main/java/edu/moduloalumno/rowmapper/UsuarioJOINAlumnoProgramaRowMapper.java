@@ -17,6 +17,7 @@ public class UsuarioJOINAlumnoProgramaRowMapper implements RowMapper<UsuarioJOIN
 		usuarioJOINAlumnoPrograma.setPass(rs.getString("pass"));
 		usuarioJOINAlumnoPrograma.setCodAlumno(rs.getString("cod_alumno"));
 		usuarioJOINAlumnoPrograma.setApePaterno(rs.getString("ape_paterno"));
+		usuarioJOINAlumnoPrograma.setApeMaterno(rs.getString("ape_materno"));
 		usuarioJOINAlumnoPrograma.setNomAlumno(rs.getString("nom_alumno"));
 		usuarioJOINAlumnoPrograma.setDniM(rs.getString("dni_m"));
 		usuarioJOINAlumnoPrograma.setMail(rs.getString("correo"));

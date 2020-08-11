@@ -12,6 +12,8 @@ public class UsuarioJOINAlumnoPrograma {
 
 	private String apePaterno;
 
+	private String apeMaterno;
+
 	private String nomAlumno;
 
 	private String dniM;
@@ -24,13 +26,14 @@ public class UsuarioJOINAlumnoPrograma {
 	}
 
 	public UsuarioJOINAlumnoPrograma(Integer idUsuario, String userName, String pass, String codAlumno,
-			String apePaterno, String nomAlumno, String dniM, String mail) {
+			String apePaterno, String apeMaterno, String nomAlumno, String dniM, String mail) {
 		super();
 		this.idUsuario = idUsuario;
 		this.userName = userName;
 		this.pass = pass;
 		this.codAlumno = codAlumno;
 		this.apePaterno = apePaterno;
+		this.apePaterno = apeMaterno;
 		this.nomAlumno = nomAlumno;
 		this.dniM = dniM;
 		this.mail = mail;
@@ -84,6 +87,14 @@ public class UsuarioJOINAlumnoPrograma {
 		this.apePaterno = apePaterno;
 	}
 
+	public void setApeMaterno(String apeMaterno) {
+		this.apeMaterno = apeMaterno;
+	}
+
+	public String getApeMaterno() {
+		return apeMaterno;
+	}
+
 	public String getNomAlumno() {
 		return nomAlumno;
 	}
@@ -128,7 +139,7 @@ public class UsuarioJOINAlumnoPrograma {
 	@Override
 	public String toString() {
 		return "UsuarioJOINAlumnoPrograma [idUsuario=" + idUsuario + ", userName=" + userName + ", pass="+ pass + 
-			    ", codAlumno=" + codAlumno + ", apePaterno=" + apePaterno + ", nomAlumno=" + nomAlumno+ 
+			    ", codAlumno=" + codAlumno + ", apePaterno=" + apePaterno + ", apeMaterno=" + apeMaterno + ", nomAlumno=" + nomAlumno+ 
 			    ", dniM="+ dniM +", mail="+mail+"]";
 	}
 	

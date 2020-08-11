@@ -28,7 +28,7 @@ public class UsuarioJOINAlumnoProgramaDAOImpl implements IUsuarioJOINAlumnoProgr
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public UsuarioJOINAlumnoPrograma getUsuarioJOINAlumnoProgramaByUserPass(String pass, String userName) {
+	public UsuarioJOINAlumnoPrograma getUsuarioJOINAlumnoProgramaByUserPass(String userName, String pass) {
 		System.out.println("pruebaaaa");
 
 		String idUser = "SELECT id_usuario" + " from  usuario " + " where (user_name ='" + userName + "');";
@@ -41,9 +41,9 @@ public class UsuarioJOINAlumnoProgramaDAOImpl implements IUsuarioJOINAlumnoProgr
 		
 		System.out.println(pas1);
 		
-		String sql = "SELECT us.id_usuario, us.user_name, us.pass, ap.cod_alumno, ap.ape_paterno, ap.nom_alumno, ap.dni_m"
+		String sql = "SELECT us.id_usuario, us.user_name, us.pass, ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, ap.dni_m"
 				+ " from  usuario us join alumno_programa ap " + " ON (us.user_name = ap.dni_m )"
-				+ " where (us.user_name ='" + userName + "') and (us.pass ='" + pas1 + "' ) limit 1;";
+				+ " where (us.user_name ='" + userName + "') and (us.pass ='" + pas1 + "' or  us.pass ='" + pass + "') limit 1;";
 
 		RowMapper<UsuarioJOINAlumnoPrograma> rowMap = new BeanPropertyRowMapper<UsuarioJOINAlumnoPrograma>(
 				UsuarioJOINAlumnoPrograma.class);
@@ -64,7 +64,9 @@ public class UsuarioJOINAlumnoProgramaDAOImpl implements IUsuarioJOINAlumnoProgr
 		Usuario use = jdbcTemplate.queryForObject(usuarioId, rowMapper);
 		String id = Integer.toString(use.getIdUsuario());
 		
-		String sql = "UPDATE usuario SET pass = '"+pass+"'"
+		String pas1 = getMD5(pass+userName+id);
+
+		String sql = "UPDATE usuario SET pass = '"+pas1+"'"
 					+"WHERE (id_usuario = '" + id + "');";
 		
 		int i =jdbcTemplate.update(sql);
