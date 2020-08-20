@@ -1,4 +1,14 @@
+amazonProperties:
+   endpointUrl: https://s3.us-east-1.amazonaws.com
+   accessKey: AKIATHMYRW25AOONQYTX
+   secretKey: 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
+   bucketName: imgvidco
+
 spring:
+  servlet:
+    multipart:
+     max-file-size: 100MB
+     max-request-size: 100MB
   mail:
     host: smtp.gmail.com
     port: 587
