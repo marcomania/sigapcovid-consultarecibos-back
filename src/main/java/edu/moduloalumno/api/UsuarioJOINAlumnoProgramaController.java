@@ -31,14 +31,14 @@ public class UsuarioJOINAlumnoProgramaController {
 	@Qualifier("floatformat")
 	private FloatFormat floatformat;
 	
-	@RequestMapping(value = "/buscar/{pass}/{userName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UsuarioJOINAlumnoPrograma> getUsuarioJOINAlumnoProgramaByUserPass(@PathVariable("pass") String pass, @PathVariable("userName") String userName) {
+	@RequestMapping(value = "/buscar/{userName}/{pass}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UsuarioJOINAlumnoPrograma> getUsuarioJOINAlumnoProgramaByUserPass(@PathVariable("userName") String userName,@PathVariable("pass") String pass) {
 		logger.info("> getUsuarioJOINAlumnoProgramaByUserPass [UsuarioJOINAlumnoPrograma]");
 
 		UsuarioJOINAlumnoPrograma usuario = null;
 		try {	
 			
-			usuario = usuarioJOINAlumnoProgramaService.getUsuarioJOINAlumnoProgramaByUserPass(pass, userName);
+			usuario = usuarioJOINAlumnoProgramaService.getUsuarioJOINAlumnoProgramaByUserPass(userName,pass);
 			System.out.println(usuario);
 			if (usuario == null) {
 				usuario = new UsuarioJOINAlumnoPrograma();

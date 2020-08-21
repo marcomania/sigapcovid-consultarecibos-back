@@ -18,7 +18,7 @@ public class UsuarioJOINAlumnoPrograma {
 
 	private String dniM;
 
-	private String mail;
+	private String correo;
 
 	public UsuarioJOINAlumnoPrograma() {
 		super();
@@ -26,7 +26,7 @@ public class UsuarioJOINAlumnoPrograma {
 	}
 
 	public UsuarioJOINAlumnoPrograma(Integer idUsuario, String userName, String pass, String codAlumno,
-			String apePaterno, String apeMaterno, String nomAlumno, String dniM, String mail) {
+			String apePaterno, String apeMaterno, String nomAlumno, String dniM, String correo) {
 		super();
 		this.idUsuario = idUsuario;
 		this.userName = userName;
@@ -36,7 +36,7 @@ public class UsuarioJOINAlumnoPrograma {
 		this.apeMaterno = apeMaterno;
 		this.nomAlumno = nomAlumno;
 		this.dniM = dniM;
-		this.mail = mail;
+		this.correo = correo;
 	}
 
 	public Integer getIdUsuario() {
@@ -55,12 +55,12 @@ public class UsuarioJOINAlumnoPrograma {
 		this.userName = userName;
 	}
 
-	public String getMail() {
-		return mail;
+	public String getCorreo() {
+		return correo;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 	public String getPass() {
@@ -140,7 +140,7 @@ public class UsuarioJOINAlumnoPrograma {
 	public String toString() {
 		return "UsuarioJOINAlumnoPrograma [idUsuario=" + idUsuario + ", userName=" + userName + ", pass="+ pass + 
 			    ", codAlumno=" + codAlumno + ", apePaterno=" + apePaterno + ", apeMaterno=" + apeMaterno + ", nomAlumno=" + nomAlumno+ 
-			    ", dniM="+ dniM +", mail="+mail+"]";
+			    ", dniM="+ dniM +", mail="+correo+"]";
 	}
 	
 
