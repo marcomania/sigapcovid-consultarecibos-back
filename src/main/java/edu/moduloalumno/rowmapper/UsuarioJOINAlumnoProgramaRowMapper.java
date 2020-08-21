@@ -20,7 +20,7 @@ public class UsuarioJOINAlumnoProgramaRowMapper implements RowMapper<UsuarioJOIN
 		usuarioJOINAlumnoPrograma.setApeMaterno(rs.getString("ape_materno"));
 		usuarioJOINAlumnoPrograma.setNomAlumno(rs.getString("nom_alumno"));
 		usuarioJOINAlumnoPrograma.setDniM(rs.getString("dni_m"));
-		usuarioJOINAlumnoPrograma.setMail(rs.getString("correo"));
+		usuarioJOINAlumnoPrograma.setCorreo(rs.getString("correo"));
 		return usuarioJOINAlumnoPrograma;
 	}
 

@@ -40,7 +40,7 @@ public class UsuarioJOINAlumnoProgramaDAOImpl implements IUsuarioJOINAlumnoProgr
 		
 		System.out.println(pas1);
 		
-		String sql = "SELECT us.id_usuario, us.user_name, us.pass, ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, ap.dni_m"
+		String sql = "SELECT us.id_usuario, us.user_name, us.pass, ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, ap.dni_m, ap.correo"
 				+ " from  usuario us join alumno_programa ap " + " ON (us.user_name = ap.dni_m )"
 				+ " where (us.user_name ='" + userName + "') and (us.pass ='" + pas1 + "' or  us.pass ='" + pass + "') limit 1;";
 
@@ -71,7 +71,7 @@ public class UsuarioJOINAlumnoProgramaDAOImpl implements IUsuarioJOINAlumnoProgr
 		int i =jdbcTemplate.update(sql);
 		
 	    if(i == 1) {
-			String sql2 = "SELECT us.id_usuario, us.user_name, us.pass, ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, ap.dni_m"
+			String sql2 = "SELECT us.id_usuario, us.user_name, us.pass, ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, ap.dni_m, ap.correo"
 					+ " from  usuario us join alumno_programa ap " + " ON (us.user_name = ap.dni_m )"
 					+ " where (us.id_usuario ='" + id + "') ;";
 
@@ -108,7 +108,7 @@ public class UsuarioJOINAlumnoProgramaDAOImpl implements IUsuarioJOINAlumnoProgr
 		System.out.println("Se modifico " + i + " usuarios");
 		
 		if(i == 1) {
-			String sql3 = "SELECT us.id_usuario, us.user_name, us.pass, ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, ap.dni_m"
+			String sql3 = "SELECT us.id_usuario, us.user_name, us.pass, ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, ap.dni_m, ap.correo"
 					    + " FROM  usuario us JOIN alumno_programa ap " + " ON (us.user_name = ap.dni_m )"
 					    + " WHERE  (us.user_name ='" + ide + "' );";
 			RowMapper<UsuarioJOINAlumnoPrograma> rowMap = new BeanPropertyRowMapper<UsuarioJOINAlumnoPrograma>(UsuarioJOINAlumnoPrograma.class);
