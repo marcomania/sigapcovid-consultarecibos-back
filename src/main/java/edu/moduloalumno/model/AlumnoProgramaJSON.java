@@ -28,6 +28,8 @@ public class AlumnoProgramaJSON implements Serializable {
 
     private String dniM;
 
+	private String correo;
+
     private Programa programa;
 
     public AlumnoProgramaJSON() {
@@ -123,6 +125,14 @@ public class AlumnoProgramaJSON implements Serializable {
 		this.dniM = dniM;
 	}
 
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
 	public Programa getPrograma() {
 		return programa;
 	}
@@ -167,7 +177,7 @@ public class AlumnoProgramaJSON implements Serializable {
 		return "AlumnoProgramaJSON [codAlumno=" + codAlumno + ", apePaterno=" + apePaterno + ", apeMaterno="
 				+ apeMaterno + ", nomAlumno=" + nomAlumno + ", codEspecialidad=" + codEspecialidad + ", codTipIngreso="
 				+ codTipIngreso + ", codSitu=" + codSitu + ", codPerm=" + codPerm + ", anioIngreso=" + anioIngreso
-				+ ", dniM=" + dniM + ", programa=" + programa + "]";
+				+ ", dniM=" + dniM + ", correo=" + correo + ", programa=" + programa + "]";
 	}
 
     
