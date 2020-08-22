@@ -33,7 +33,7 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 	public List<AlumnoPrograma> getAlumnoProgramaByDni(String dni) {
 		String sql = "SELECT ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, " + 
 		"ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, " + 
-		"ap.id_programa, p.nom_programa, p.sigla_programa ,p.id_tip_grado" + 
+		"ap.id_programa, p.nom_programa, p.sigla_programa, p.id_tip_grado " + 
 		"FROM alumno_programa ap inner join programa p " + 
 		"on (ap.id_programa = p.id_programa) " + 
 		"WHERE (dni_m = ?) " ;		

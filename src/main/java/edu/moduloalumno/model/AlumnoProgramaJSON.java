@@ -136,7 +136,7 @@ public class AlumnoProgramaJSON implements Serializable {
 	}
 
 	public String getIdTipGrado() {
-		return correo;
+		return idTipGrado;
 	}
 
 	public void setIdTipGrado(String idTipGrado) {
