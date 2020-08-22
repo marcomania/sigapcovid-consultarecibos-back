@@ -47,6 +47,7 @@ public class RecaudacionesJoinAlumnoJoinConceptoJoinFacultadWithDescriptionRowMa
 		recaudacion.setDescripcion_ubi(row.getString("descripcion_ubi"));
 		recaudacion.setDescripcion_tipo(row.getString("descripcion_tipo"));
 		recaudacion.setValidado(row.getBoolean("validado"));
+		recaudacion.setId_tip_grado(row.getString("id_tip_grado"));
 		return recaudacion;
 	}
 
