@@ -28,13 +28,20 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.ListObjectsV2Request;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.util.IOUtils;
+import edu.moduloalumno.entity.FileAWS;
+//import com.org.tech.s3poc.FileAWS;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 //import com.amazonaws.services.s3.model.S3Object;
 
 @Service
@@ -64,9 +71,9 @@ public class AmazonClient {
 		String fileUrl = "";
 		try {
 			File file = convertMultiPartToFile(multipartFile);
-			//String fileName = getFileExtension(id,multipartFile);
-			fileUrl = endpointUrl + "/" + bucketName + "/" + id;
-			uploadFileTos3bucket(id, file);
+			String fileName = generateFileName(multipartFile);
+			fileUrl = endpointUrl + "/" + bucketName + "/" + id+"/"+fileName;
+			uploadFileTos3bucket(id,fileName, file);
 			file.delete();
 		} /*catch (Exception e) {
 			e.printStackTrace();
@@ -96,6 +103,26 @@ public class AmazonClient {
 		s3client.deleteObject(new DeleteObjectRequest(bucketName + "/", fileName));
 		return "Successfully deleted";
 	}
+        
+        public ArrayList<FileAWS> getFileFromFolder(String folderName){
+        
+            ArrayList<FileAWS> listaFromFolder= new ArrayList<FileAWS>();
+            ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withPrefix("reciboAlumnos/"+folderName+"/").withDelimiter("/");
+            ListObjectsV2Result listing = s3client.listObjectsV2(req);
+            for (String commonPrefix : listing.getCommonPrefixes()) {
+                
+                    System.out.println(commonPrefix);
+            }
+            for (S3ObjectSummary summary: listing.getObjectSummaries()) {
+                
+                FileAWS fileFolder= new FileAWS();
+                fileFolder.setUrl("https://imgvidco.s3.amazonaws.com/"+summary.getKey());
+                listaFromFolder.add(fileFolder);
+                System.out.println(summary.getKey());
+            }
+            
+            return listaFromFolder;
+        }
         
         public ByteArrayOutputStream getFile(String keyName) {
             
@@ -145,10 +172,9 @@ public class AmazonClient {
                         return null;
   
     }
-	private void uploadFileTos3bucket(String fileName, File file) {
+	private void uploadFileTos3bucket(String id,String fileName, File file) {
 		s3client.putObject(
-				new PutObjectRequest(bucketName, fileName, file));
-				//.withCannedAcl(CannedAccessControlList.PublicRead));
+				new PutObjectRequest(bucketName, "reciboAlumnos/"+id+"/"+fileName, file).withCannedAcl(CannedAccessControlList.PublicRead));
 	}
 
 	private String generateFileName(MultipartFile multiPart) {

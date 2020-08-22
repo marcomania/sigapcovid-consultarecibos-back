@@ -10,6 +10,8 @@ import edu.moduloalumno.service.impl.AmazonClient;
  * @author JUNIOR
  */
 import com.amazonaws.services.s3.event.S3EventNotification;
+import edu.moduloalumno.entity.FileAWS;
+//import com.org.tech.s3poc.FileAWS;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 //import com.org.tech.s3poc.serviceimpl.AmazonClient;
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpStatus;
 
 
 
@@ -76,5 +80,32 @@ public class BucketController {
                 .header("Content-disposition", "attachment; filename=\"" + keyname + "\"")
                 .body(downloadInputStream.toByteArray());
 
+    }
+        
+        @GetMapping(path = "/getFileFromFolder/{id}")
+        public ResponseEntity<ArrayList<FileAWS>> getFileFromFolder(@PathVariable String id)  {
+        /*byte[] data = s3Factory.getFile(file);
+        ByteArrayResource resource = new ByteArrayResource(data);*/
+            String keyname = id;
+            ArrayList<FileAWS> list = null;
+            //ByteArrayOutputStream downloadInputStream= amazonClient.getFileFromFolder(keyname);
+            //ByteArrayResource resource = new ByteArrayResource(data);
+            try {
+			list = amazonClient.getFileFromFolder(keyname);
+			
+			if (list == null) {
+				list = new ArrayList<FileAWS>();
+			}
+		} catch (Exception e) {
+			//logger.error("Unexpected Exception caught.", e);
+			return new ResponseEntity<ArrayList<FileAWS>>(list, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+
+		//logger.info("< getAlumnoIdByNombresApellidosRestringido [Alumno]");
+		return new ResponseEntity<ArrayList<FileAWS>>(list, HttpStatus.OK);
+            
+
+        //return ;
     }
 }
