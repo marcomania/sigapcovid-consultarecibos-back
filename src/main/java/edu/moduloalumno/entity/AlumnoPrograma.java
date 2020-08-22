@@ -31,7 +31,16 @@ public class AlumnoPrograma implements Serializable {
     private String nom_programa;
     
     private String siglaProg;
-    
+
+	private String idTipGrado;
+
+    public String getIdTipGrado() {
+		return idTipGrado;
+	}
+
+	public void setIdTipGrado(String idTipGrado) {
+		this.idTipGrado = idTipGrado;
+	}
     
     public String getSiglaProg() {
 		return siglaProg;
@@ -174,7 +183,7 @@ public class AlumnoPrograma implements Serializable {
 		return "AlumnoPrograma [codAlumno=" + codAlumno + ", apePaterno=" + apePaterno + ", apeMaterno=" + apeMaterno
 				+ ", nomAlumno=" + nomAlumno + ", codEspecialidad=" + codEspecialidad + ", codTipIngreso="
 				+ codTipIngreso + ", codSitu=" + codSitu + ", codPerm=" + codPerm + ", anioIngreso=" + anioIngreso
-				+ ", dniM=" + dniM + ", idPrograma=" + idPrograma + "]";
+				+ ", dniM=" + dniM + ", idPrograma=" + idPrograma + ", idTipGrado=" + idTipGrado + "]";
 	}
     
     

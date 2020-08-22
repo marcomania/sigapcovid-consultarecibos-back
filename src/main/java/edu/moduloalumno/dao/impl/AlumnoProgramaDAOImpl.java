@@ -22,7 +22,7 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 	public AlumnoPrograma getAlumnoProgramaById(String codAlumno) {
 		String sql = "SELECT ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, " + 
 		"ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, "+
-		"ap.id_programa,p.nom_programa,p.sigla_programa  "
+		"ap.id_programa,p.nom_programa,p.sigla_programa ,p.id_tip_grado "
 		+ "FROM alumno_programa ap,programa p WHERE (ap.id_programa = p.id_programa) and (cod_alumno = ?)";
 		RowMapper<AlumnoPrograma> rowMapper =  new AlumnoProgramaRowMapper();//new BeanPropertyRowMapper<AlumnoPrograma>(AlumnoPrograma.class);
 		AlumnoPrograma alumnoPrograma = jdbcTemplate.queryForObject(sql, rowMapper, codAlumno);
@@ -33,7 +33,7 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 	public List<AlumnoPrograma> getAlumnoProgramaByDni(String dni) {
 		String sql = "SELECT ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, " + 
 		"ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, " + 
-		"ap.id_programa, p.nom_programa, p.sigla_programa " + 
+		"ap.id_programa, p.nom_programa, p.sigla_programa ,p.id_tip_grado" + 
 		"FROM alumno_programa ap inner join programa p " + 
 		"on (ap.id_programa = p.id_programa) " + 
 		"WHERE (dni_m = ?) " ;		
@@ -44,7 +44,7 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 
 	@Override
 	public List<AlumnoPrograma> getAllAlumnoProgramas() {
-		String sql = "SELECT ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, ap.id_programa,p.nom_programa FROM alumno_programa ap,programa p WHERE (ap.id_programa = p.id_programa)";		
+		String sql = "SELECT ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, ap.id_programa,p.nom_programa,p.id_tip_grado FROM alumno_programa ap,programa p WHERE (ap.id_programa = p.id_programa)";		
 		RowMapper<AlumnoPrograma> rowMapper = new AlumnoProgramaRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
 	}
@@ -55,7 +55,7 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 		"ap.ape_paterno,ap.ape_materno, ap.cod_especialidad,  " +
 		"ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm,  " +
 		"ap.anio_ingreso, ap.dni_m, ap.id_programa,  " +
-		"p.nom_programa, p.sigla_programa  " + 
+		"p.nom_programa, p.sigla_programa ,p.id_tip_grado " + 
 		"FROM alumno_programa ap inner join programa p  " +
 		"on (ap.id_programa = p.id_programa) " +
 		"where to_tsquery( ? ) @@ to_tsvector(coalesce(ap.nom_alumno,'')  " +
@@ -72,7 +72,7 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 		"ap.ape_paterno,ap.ape_materno, ap.cod_especialidad,  " +
 		"ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm,  " +
 		"ap.anio_ingreso, ap.dni_m, ap.id_programa,  " +
-		"p.nom_programa , p.sigla_programa  " +
+		"p.nom_programa , p.sigla_programa ,p.id_tip_grado " +
 		"FROM alumno_programa ap inner join programa p  " +
 		"on (ap.id_programa=p.id_programa)  " + 
 		"where ap.cod_alumno=( ? ) and ap.id_programa=( ? )";

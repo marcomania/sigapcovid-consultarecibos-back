@@ -30,6 +30,8 @@ public class AlumnoProgramaJSON implements Serializable {
 
 	private String correo;
 
+	private String idTipGrado;
+
     private Programa programa;
 
     public AlumnoProgramaJSON() {
@@ -131,6 +133,14 @@ public class AlumnoProgramaJSON implements Serializable {
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
+	}
+
+	public String getIdTipGrado() {
+		return correo;
+	}
+
+	public void setIdTipGrado(String idTipGrado) {
+		this.idTipGrado = idTipGrado;
 	}
 
 	public Programa getPrograma() {
