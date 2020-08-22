@@ -200,7 +200,7 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		"COALESCE( s.fecha_equiv,r.fecha) as fecha,ap.anio_ingreso, " +  
 		"p.nom_programa, p.id_programa,p.sigla_programa, " +  
 		"r.cod_alumno, ec.ecivil_desc as estado_civil, r.observacion, r.observacion_upg , " +
-		"u.descripcion as descripcion_ubi, t.descripcion as descripcion_tipo, r.validado, p.id_tip_grado" + 
+		"u.descripcion as descripcion_ubi, t.descripcion as descripcion_tipo, r.validado, p.id_tip_grado " + 
 		"from recaudaciones r " +  
 		"inner join registro_carga rc on (rc.id_registro = r.id_registro) " +
 		"inner join alumno_programa ap on (ap.cod_alumno = r.cod_alumno) " +
