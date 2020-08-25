@@ -13,17 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.moduloalumno.entity.mse.AlumnoMse;
 import edu.moduloalumno.entity.mse.AperturaConcepto;
-import edu.moduloalumno.entity.mse.Correo;
 import edu.moduloalumno.entity.mse.Formacion;
 import edu.moduloalumno.entity.mse.Institucion;
 import edu.moduloalumno.entity.mse.Nivel;
 import edu.moduloalumno.entity.mse.Persona;
-import edu.moduloalumno.entity.mse.PersonaTelefono;
 import edu.moduloalumno.entity.mse.TipoInstitucion;
-import edu.moduloalumno.entity.mse.TipoTelefono;
-import edu.moduloalumno.service.mse.IAlumnoService;
 import edu.moduloalumno.service.mse.IPersonaService;
 
 @RestController

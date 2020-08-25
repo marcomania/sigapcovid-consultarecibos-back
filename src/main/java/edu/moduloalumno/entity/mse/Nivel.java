@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Nivel implements Serializable {
 
+	private static final long serialVersionUID = 7611789879989597102L;
+
 	private Integer nivel_id;
 	private String nivel_desc;
 	private String nivel_ini;
@@ -15,7 +17,6 @@ public class Nivel implements Serializable {
 	}
 	public Nivel() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Integer getNivel_id() {
 		return nivel_id;

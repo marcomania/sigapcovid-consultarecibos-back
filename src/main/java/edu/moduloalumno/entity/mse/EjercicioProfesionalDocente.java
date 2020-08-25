@@ -21,7 +21,6 @@ public class EjercicioProfesionalDocente implements Serializable{
 	private String corrJefInmSup;
 	public EjercicioProfesionalDocente() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public EjercicioProfesionalDocente(Integer entidad, String tipoEntidad, String cargo, String princFunc,
 			String tipoVincLab, Date fechInic, Date fechaFin, String nomJefInmSup, String corrJefInmSup) {

@@ -8,9 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.moduloalumno.entity.mse.PersonaTelefono;
 import edu.moduloalumno.entity.mse.TipoTelefono;
-import edu.moduloalumno.rowmapper.mse.PersonaTelefonoRowMapper;
 import edu.moduloalumno.rowmapper.mse.TipoTelefonoRowMapper;
 
 @Transactional

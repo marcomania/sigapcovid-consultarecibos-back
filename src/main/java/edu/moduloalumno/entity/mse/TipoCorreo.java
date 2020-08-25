@@ -13,7 +13,6 @@ public class TipoCorreo implements Serializable{
 	private String tipoCorreo;
 	public TipoCorreo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public TipoCorreo(Integer id, String tipoCorreo) {
 		super();

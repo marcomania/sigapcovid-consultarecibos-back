@@ -15,7 +15,6 @@ public class NotificacionCorrelativo {
 	}
 	public NotificacionCorrelativo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public String getAnio() {
 		return anio;

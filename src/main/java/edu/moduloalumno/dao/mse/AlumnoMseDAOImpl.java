@@ -8,13 +8,9 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.moduloalumno.dao.mse.IAlumnoMseDAO;
-import edu.moduloalumno.entity.Programa;
 import edu.moduloalumno.entity.mse.AlumnoMse;
 import edu.moduloalumno.entity.mse.CmbProgramas;
 import edu.moduloalumno.entity.mse.ConProgramaPorAlumno;
-import edu.moduloalumno.rowmapper.AlumnoRowMapper;
-import edu.moduloalumno.rowmapper.ProgramaRowMapper;
 import edu.moduloalumno.rowmapper.mse.AlumnoMseRowMapper;
 import edu.moduloalumno.rowmapper.mse.CmbProgramasRowMapper;
 import edu.moduloalumno.rowmapper.mse.ConProgramaPorAlumnoRowMapper;

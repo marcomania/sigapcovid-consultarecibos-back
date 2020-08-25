@@ -3,7 +3,6 @@ package edu.moduloalumno.dao.mse;
 
 import java.util.List;
 
-import edu.moduloalumno.entity.Programa;
 import edu.moduloalumno.entity.mse.AlumnoMse;
 import edu.moduloalumno.entity.mse.CmbProgramas;
 import edu.moduloalumno.entity.mse.ConProgramaPorAlumno;

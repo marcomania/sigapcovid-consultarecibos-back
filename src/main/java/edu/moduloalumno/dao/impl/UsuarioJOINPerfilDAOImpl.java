@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.moduloalumno.dao.IUsuarioJOINPerfilDAO;
 import edu.moduloalumno.entity.Usuario;
-import edu.moduloalumno.entity.UsuarioJOINAlumnoPrograma;
 import edu.moduloalumno.entity.UsuarioJOINPerfil;
 
 @Transactional
@@ -30,9 +29,8 @@ public class UsuarioJOINPerfilDAOImpl implements IUsuarioJOINPerfilDAO {
 
 	@Override
 	public UsuarioJOINPerfil getUsuarioJOINPerfilByUserPass(String userName, String pass) {
-		System.out.println("pruebaaaa");
-		System.out.println(userName);
-		System.out.println(pass);
+
+		logger.info("> getUsuarioJOINPerfilByUserPass [UsuarioJOINPerfil]");
 
 		String idUser = "SELECT id_usuario" + " from  usuario " + " where (user_name ='" + userName + "');";
 

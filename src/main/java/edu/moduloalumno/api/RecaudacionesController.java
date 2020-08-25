@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.CuentasPorCobrar;
-import edu.moduloalumno.entity.CuentasPorCobrar2;
 import edu.moduloalumno.entity.DeudoresPosgradoMasInfo;
 import edu.moduloalumno.entity.Recaudaciones;
 import edu.moduloalumno.model.Filtro;
@@ -237,7 +236,6 @@ public class RecaudacionesController {
         public void updateRecaudaciones(@PathVariable("id_rec") Integer id_rec, @PathVariable("cod_alumno") String cod_alumno, @PathVariable("id_programa") Integer id_programa){
             
             logger.info("> Commo00n: " + id_rec + " " + cod_alumno + " " + id_programa);
-            Integer response = 0;
             
             try{
                  recaudacionesService.updateRecaudaciones(id_rec, cod_alumno, id_programa);

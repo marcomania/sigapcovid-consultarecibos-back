@@ -11,7 +11,6 @@ public class TipoGrado implements Serializable {
 	private String nombre;
 	public TipoGrado() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public TipoGrado(String id, String nombre) {
 		super();

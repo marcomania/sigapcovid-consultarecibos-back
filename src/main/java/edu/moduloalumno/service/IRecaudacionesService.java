@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import edu.moduloalumno.entity.CuentasPorCobrar;
-import edu.moduloalumno.entity.CuentasPorCobrar2;
 import edu.moduloalumno.entity.DeudoresPosgradoMasInfo;
 import edu.moduloalumno.entity.Recaudaciones;
 

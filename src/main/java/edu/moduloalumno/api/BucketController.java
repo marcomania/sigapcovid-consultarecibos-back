@@ -9,7 +9,6 @@ import edu.moduloalumno.service.impl.AmazonClient;
  *
  * @author JUNIOR
  */
-import com.amazonaws.services.s3.event.S3EventNotification;
 import edu.moduloalumno.entity.FileAWS;
 //import com.org.tech.s3poc.FileAWS;
 import java.io.IOException;
@@ -25,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 //import com.org.tech.s3poc.serviceimpl.AmazonClient;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
 
 

@@ -13,7 +13,6 @@ public class Facultad implements Serializable{
 	private String nombre;
 	public Facultad() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Facultad(Integer id, String nombre) {
 		super();

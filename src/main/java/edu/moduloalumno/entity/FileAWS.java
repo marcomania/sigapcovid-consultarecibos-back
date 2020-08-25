@@ -16,6 +16,8 @@ import java.io.Serializable;
  * @author JUNIOR
  */
 public class FileAWS implements Serializable {
+
+    private static final long serialVersionUID = 7611789879983997102L;
     private String url;
     
     public FileAWS(){}

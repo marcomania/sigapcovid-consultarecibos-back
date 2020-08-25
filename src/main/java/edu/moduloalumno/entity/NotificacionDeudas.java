@@ -15,7 +15,6 @@ public class NotificacionDeudas {
 	private String l_ultimo;
 	public NotificacionDeudas() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Integer getId_notificacion_deudas() {
 		return id_notificacion_deudas;

@@ -1,11 +1,8 @@
 package edu.moduloalumno.service.impl;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Date;
-import java.time.LocalTime;
 
-import static j2html.TagCreator.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,9 +11,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -24,7 +18,6 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import edu.moduloalumno.entity.CuentasPorCobrar2;
 import edu.moduloalumno.entity.DeudoresPosgradoMasInfo;
 import edu.moduloalumno.entity.NotificacionCorrelativo;
 import edu.moduloalumno.entity.NotificacionDeudas;
@@ -70,7 +63,7 @@ public class MailServiceImpl implements IMailService {
 		String nuevoSubject;
 		String banco_codigoPago="<h3><b> Banco Pichincha, Cuenta UNMSM </b>: <span style=\"color:#0000FF\"> 270016684 </span> </h3>" ;
 		
-		Iterator iter=cuentas.iterator();
+		Iterator<DeudoresPosgradoMasInfo> iter=cuentas.iterator();
 			while(iter.hasNext()) {
 				cuenta=(DeudoresPosgradoMasInfo)iter.next();
 				notificacion_actual++;

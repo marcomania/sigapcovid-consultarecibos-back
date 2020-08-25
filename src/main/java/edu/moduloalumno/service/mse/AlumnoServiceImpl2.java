@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.moduloalumno.dao.mse.IAlumnoMseDAO;
-import edu.moduloalumno.entity.Programa;
 import edu.moduloalumno.entity.mse.AlumnoMse;
 import edu.moduloalumno.entity.mse.CmbProgramas;
 import edu.moduloalumno.entity.mse.ConProgramaPorAlumno;
-import edu.moduloalumno.service.mse.IAlumnoService;
 
 @Service
 public class AlumnoServiceImpl2 implements IAlumnoService {

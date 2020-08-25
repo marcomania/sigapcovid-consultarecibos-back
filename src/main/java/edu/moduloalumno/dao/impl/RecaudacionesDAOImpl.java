@@ -12,11 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.moduloalumno.dao.IRecaudacionesDAO;
 import edu.moduloalumno.entity.CuentasPorCobrar;
-import edu.moduloalumno.entity.CuentasPorCobrar2;
 import edu.moduloalumno.entity.DeudoresPosgradoMasInfo;
 import edu.moduloalumno.entity.Recaudaciones;
 import edu.moduloalumno.rowmapper.CuentasPorCobrarRowMapper;
-import edu.moduloalumno.rowmapper.CuentasPorCobrarRowMapper2;
 import edu.moduloalumno.rowmapper.CuentasPorCobrarV3RowMapper;
 import edu.moduloalumno.rowmapper.RecaudacionesRowMapper;
 

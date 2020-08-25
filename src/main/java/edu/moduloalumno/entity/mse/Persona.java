@@ -33,7 +33,6 @@ public class Persona implements Serializable{
 	}
 	public Persona() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	

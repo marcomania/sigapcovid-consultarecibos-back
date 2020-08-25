@@ -29,7 +29,7 @@ public class UsuarioJOINAlumnoProgramaDAOImpl implements IUsuarioJOINAlumnoProgr
 
 	@Override
 	public UsuarioJOINAlumnoPrograma getUsuarioJOINAlumnoProgramaByUserPass(String userName, String pass) {
-
+		logger.info("> getUsuarioJOINAlumnoProgramaByUserPass [UsuarioJOINAlumnoPrograma]");
 		String idUser = "SELECT id_usuario" + " from  usuario " + " where (user_name ='" + userName + "');";
 
 		RowMapper<Usuario> rowMapper = new BeanPropertyRowMapper<Usuario>(Usuario.class);
@@ -52,7 +52,7 @@ public class UsuarioJOINAlumnoProgramaDAOImpl implements IUsuarioJOINAlumnoProgr
 	
 	@Override
 	public UsuarioJOINAlumnoPrograma getUpdateUsuarioJOINAlumnoPrograma(String userName, String mail, String pass) {
-		
+		logger.info("> getUpdateUsuarioJOINAlumnoPrograma [UsuarioJOINAlumnoPrograma]");
 		UsuarioJOINAlumnoPrograma usuarioJOINAlumnoPrograma = null;
 		
 		String usuarioId= "SELECT us.id_usuario "
@@ -87,7 +87,7 @@ public class UsuarioJOINAlumnoProgramaDAOImpl implements IUsuarioJOINAlumnoProgr
 	
 	@Override
 	public UsuarioJOINAlumnoPrograma getResetUsuarioJOINAlumnoPrograma(String mail, String userName) {
-		
+		logger.info("> getResetUsuarioJOINAlumnoPrograma [UsuarioJOINAlumnoPrograma]");
 		UsuarioJOINAlumnoPrograma usuarioJOINAlumnoPrograma = null;
 		
 		String usua = "SELECT us.id_usuario, us.user_name "

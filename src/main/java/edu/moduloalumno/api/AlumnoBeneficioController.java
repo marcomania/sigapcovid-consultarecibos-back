@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.moduloalumno.component.FloatFormat;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
-import edu.moduloalumno.entity.BeneficioReporteCiclo;
 import edu.moduloalumno.entity.BeneficioReporteCredito;
 import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoAplicaBeneficio;
@@ -46,7 +45,7 @@ public class AlumnoBeneficioController {
 
 	@RequestMapping(value = "/listar/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AlumnoProgramaBeneficioCon>> getAllAlumnoBeneficio(@PathVariable("codigo") String codigo) {
-		logger.info(">> AlumnoBeneficio <<");
+		logger.info("> getAllAlumnoBeneficio [List<AlumnoProgramaBeneficioCon>]");
 
 		List<AlumnoProgramaBeneficioCon> list = null;
 		try {

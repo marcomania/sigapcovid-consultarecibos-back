@@ -15,7 +15,6 @@ public class Institucion implements Serializable {
 	private String instIni;
 	public Institucion() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Institucion(Integer id, Integer idEconomico, Integer idTipoInst, String instDesc, String instDescMin,
 			String instIni) {

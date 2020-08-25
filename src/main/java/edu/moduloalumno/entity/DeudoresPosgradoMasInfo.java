@@ -59,7 +59,6 @@ public class DeudoresPosgradoMasInfo {
 	
 	public DeudoresPosgradoMasInfo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	

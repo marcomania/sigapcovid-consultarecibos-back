@@ -1,8 +1,5 @@
 package edu.moduloalumno.service.mse;
 
-
-import java.util.List;
-
 import edu.moduloalumno.entity.mse.AlumnoDomicilio;
 
 public interface IAlumnoDomicilioService {

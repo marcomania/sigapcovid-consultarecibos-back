@@ -14,7 +14,6 @@ public class PersonaCorreo implements Serializable{
 	private String correo;
 	public PersonaCorreo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public PersonaCorreo(Integer id, Integer idTipoCorreo, String correo) {
 		super();

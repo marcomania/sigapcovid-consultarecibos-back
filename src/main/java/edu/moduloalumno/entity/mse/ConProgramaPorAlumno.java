@@ -2,9 +2,6 @@ package edu.moduloalumno.entity.mse;
 
 import java.io.Serializable;
 
-import edu.moduloalumno.entity.Facultad;
-import edu.moduloalumno.entity.Usuario;
-
 public class ConProgramaPorAlumno implements Serializable {
 
 	private static final long serialVersionUID = 1L;

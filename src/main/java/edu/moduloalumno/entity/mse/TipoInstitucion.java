@@ -13,7 +13,6 @@ public class TipoInstitucion implements Serializable{
 	private String iniciales;
 	public TipoInstitucion() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public TipoInstitucion(Integer id, String descripcion, String iniciales) {
 		super();

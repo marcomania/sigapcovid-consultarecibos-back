@@ -30,7 +30,6 @@ public class ImporteAlumno implements Serializable {
 
 	public ImporteAlumno() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 

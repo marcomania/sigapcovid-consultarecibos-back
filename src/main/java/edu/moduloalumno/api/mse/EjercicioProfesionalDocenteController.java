@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.mse.Correo;
 import edu.moduloalumno.entity.mse.EjercicioProfesionalDocente;
-import edu.moduloalumno.entity.mse.PersonaTelefono;
 import edu.moduloalumno.service.mse.IEjercicioProfesionalDocenteService;
 
 @RestController

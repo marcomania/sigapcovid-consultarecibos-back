@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.moduloalumno.dao.mse.IPersonaCorreoDao;
-import edu.moduloalumno.dao.mse.IPersonaDao;
 import edu.moduloalumno.entity.mse.Correo;
 import edu.moduloalumno.entity.mse.PersonaCorreo;
 import edu.moduloalumno.entity.mse.TipoCorreo;
@@ -25,7 +24,6 @@ public class PersonaCorreoServiceImpl implements IPersonaCorreoService {
 
 	@Override
 	public PersonaCorreo findOne(Integer id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

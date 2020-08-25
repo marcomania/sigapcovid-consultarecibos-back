@@ -1,7 +1,5 @@
 package edu.moduloalumno.service;
 
-import org.springframework.stereotype.Service;
-
 import edu.moduloalumno.entity.NotificacionDeudas;
 
 public interface INotificacionDeudasService {

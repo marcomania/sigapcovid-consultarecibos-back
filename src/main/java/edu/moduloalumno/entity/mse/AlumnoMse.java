@@ -21,7 +21,6 @@ public class AlumnoMse implements Serializable {
     private String correoLaboral;
     
     public AlumnoMse() {
-		// TODO Auto-generated constructor stub
 	}
     
     public void setCodigoAlumno(String codigoAlumno) {

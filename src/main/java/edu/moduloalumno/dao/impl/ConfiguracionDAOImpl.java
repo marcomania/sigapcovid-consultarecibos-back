@@ -1,12 +1,10 @@
 package edu.moduloalumno.dao.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -28,11 +26,10 @@ public class ConfiguracionDAOImpl implements IConfiguracionDAO {
 
 	@Override //aqui
 	public List<Configuracion2> getAllConfiguracion() {	
+		logger.info("> getAllConfiguracion [List<Configuracion2>]");
 		String sql = "select id_configuracion, estado from configuracion order by id_configuracion";
 
 		RowMapper<Configuracion2> rowMapper = new ConfiguracionRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
 	}
-	
 }
-	

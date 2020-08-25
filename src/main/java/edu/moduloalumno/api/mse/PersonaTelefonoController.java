@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.moduloalumno.entity.mse.AlumnoDomicilio;
-import edu.moduloalumno.entity.mse.ConProgramaPorAlumno;
 import edu.moduloalumno.entity.mse.PersonaTelefono;
 import edu.moduloalumno.entity.mse.TipoTelefono;
 import edu.moduloalumno.service.mse.IPersonaTelefonoService;

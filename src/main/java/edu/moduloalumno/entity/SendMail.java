@@ -18,7 +18,6 @@ public class SendMail {
 	}
 	public SendMail() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public String getFrom() {
 		return from;

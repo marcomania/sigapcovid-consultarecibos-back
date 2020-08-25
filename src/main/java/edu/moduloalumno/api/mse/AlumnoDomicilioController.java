@@ -1,6 +1,6 @@
 package edu.moduloalumno.api.mse;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.mse.AlumnoDomicilio;
-import edu.moduloalumno.entity.mse.AlumnoMse;
 import edu.moduloalumno.service.mse.IAlumnoDomicilioService;
 
 @RestController

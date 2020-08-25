@@ -18,7 +18,6 @@ public class Programa implements Serializable{
 	private Integer prioridad;
 	public Programa() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Programa(Integer id, String nombre, String sigla, String tipoGrado, Integer facultadId, boolean vigencia,
 			Integer prioridad) {

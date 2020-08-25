@@ -10,7 +10,6 @@ public class Correo implements Serializable {
 	private String correo;
 	public Correo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Correo(String correo) {
 		super();

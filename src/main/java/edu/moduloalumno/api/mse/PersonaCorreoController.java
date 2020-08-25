@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.mse.Correo;
 import edu.moduloalumno.entity.mse.PersonaCorreo;
-import edu.moduloalumno.entity.mse.PersonaTelefono;
 import edu.moduloalumno.entity.mse.TipoCorreo;
-import edu.moduloalumno.entity.mse.TipoTelefono;
 import edu.moduloalumno.service.mse.IPersonaCorreoService;
-import edu.moduloalumno.service.mse.IPersonaTelefonoService;
 
 @RestController
 @RequestMapping("/mse/correo")

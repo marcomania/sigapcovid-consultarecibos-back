@@ -10,13 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.moduloalumno.entity.mse.Correo;
 import edu.moduloalumno.entity.mse.PersonaCorreo;
-import edu.moduloalumno.entity.mse.PersonaTelefono;
 import edu.moduloalumno.entity.mse.TipoCorreo;
-import edu.moduloalumno.entity.mse.TipoTelefono;
 import edu.moduloalumno.rowmapper.mse.PersonaCorreoRowMapper;
-import edu.moduloalumno.rowmapper.mse.PersonaTelefonoRowMapper;
 import edu.moduloalumno.rowmapper.mse.TipoCorreoRowMapper;
-import edu.moduloalumno.rowmapper.mse.TipoTelefonoRowMapper;
 
 @Transactional
 @Repository
@@ -39,7 +35,6 @@ public class PersonaCorreoDaoImpl implements IPersonaCorreoDao {
 
 	@Override
 	public PersonaCorreo findOne(Integer id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
