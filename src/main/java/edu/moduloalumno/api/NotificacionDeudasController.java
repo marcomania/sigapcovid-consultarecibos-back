@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.moduloalumno.entity.NotificacionCorrelativo;
 import edu.moduloalumno.entity.NotificacionDeudas;
-import edu.moduloalumno.service.INotificacionCorrelativoService;
 import edu.moduloalumno.service.INotificacionDeudasService;
 
 @RestController

@@ -8,27 +8,19 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.moduloalumno.entity.mse.AlumnoMse;
 import edu.moduloalumno.entity.mse.AperturaConcepto;
-import edu.moduloalumno.entity.mse.ConProgramaPorAlumno;
 import edu.moduloalumno.entity.mse.Formacion;
 import edu.moduloalumno.entity.mse.Institucion;
 import edu.moduloalumno.entity.mse.Nivel;
 import edu.moduloalumno.entity.mse.Persona;
-import edu.moduloalumno.entity.mse.TipoCorreo;
 import edu.moduloalumno.entity.mse.TipoGrado;
 import edu.moduloalumno.entity.mse.TipoInstitucion;
-import edu.moduloalumno.entity.mse.TipoTelefono;
 import edu.moduloalumno.rowmapper.mse.TipoGradoRowMapper;
-import edu.moduloalumno.rowmapper.mse.AlumnoMseRowMapper;
 import edu.moduloalumno.rowmapper.mse.AperturaConceptoRowMapper;
-import edu.moduloalumno.rowmapper.mse.ConProgramaPorAlumnoRowMapper;
 import edu.moduloalumno.rowmapper.mse.FormacionRowMapper;
 import edu.moduloalumno.rowmapper.mse.NivelRowMapper;
 import edu.moduloalumno.rowmapper.mse.PersonaRowMapper;
-import edu.moduloalumno.rowmapper.mse.TipoCorreoRowMapper;
 import edu.moduloalumno.rowmapper.mse.TipoInstitucionRowMapper;
-import edu.moduloalumno.rowmapper.mse.TipoTelefonoRowMapper;
 
 
 @Transactional

@@ -9,10 +9,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.moduloalumno.entity.mse.Facultad;
-import edu.moduloalumno.entity.mse.Formacion;
 import edu.moduloalumno.entity.mse.Programa;
 import edu.moduloalumno.entity.mse.TipoGrado;
-import edu.moduloalumno.rowmapper.mse.FormacionRowMapper;
 import edu.moduloalumno.rowmapper.mse.ProgramaRowMapper;
 import edu.moduloalumno.rowmapper.mse.TipoGradoRowMapper;
 

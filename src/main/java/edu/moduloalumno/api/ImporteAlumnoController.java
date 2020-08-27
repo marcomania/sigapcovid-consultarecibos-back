@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.moduloalumno.entity.Alumno;
 import edu.moduloalumno.entity.ImporteAlumno;
 import edu.moduloalumno.service.IImporteAlumnoService;
 import org.springframework.web.bind.annotation.RequestBody;

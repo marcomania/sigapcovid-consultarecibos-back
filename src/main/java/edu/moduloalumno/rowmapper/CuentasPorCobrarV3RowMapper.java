@@ -5,13 +5,11 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import edu.moduloalumno.entity.CuentasPorCobrar2;
 import edu.moduloalumno.entity.DeudoresPosgradoMasInfo;
 
 public class CuentasPorCobrarV3RowMapper implements RowMapper<DeudoresPosgradoMasInfo> {
 	@Override
 	public DeudoresPosgradoMasInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
 		DeudoresPosgradoMasInfo deudoresPosgrado= new DeudoresPosgradoMasInfo();
 		
 		deudoresPosgrado.setCod_alumno(rs.getString("cod_alumno"));

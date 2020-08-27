@@ -27,7 +27,6 @@ import edu.moduloalumno.component.FloatFormat;
 import edu.moduloalumno.entity.CodigosporNomApe;
 import edu.moduloalumno.entity.RecaudacionesAlumnoConConcepto;
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
-import edu.moduloalumno.entity.RecaudacionesJoinAlumnoJoinConceptoJoinFacultadWithDescription;
 import edu.moduloalumno.model.DataActualizar;
 import edu.moduloalumno.model.Filtro;
 import edu.moduloalumno.service.IRecaudacionesJOINAlumnoJOINConceptoJOINFacultadService;
@@ -181,7 +180,6 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadController {
 		logger.info("> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados [Recaudaciones]");
 
 		List<RecaudacionesAlumnoConConcepto> list = null;
-		String a;
 		try {
 
 			list = recaudacionesJOINAlumnoJOINConceptoJOINFacultadservice.getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByValidados(codigo);

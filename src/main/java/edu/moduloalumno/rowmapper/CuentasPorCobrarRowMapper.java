@@ -11,7 +11,6 @@ public class CuentasPorCobrarRowMapper implements RowMapper<CuentasPorCobrar>{
 
 	@Override
 	public CuentasPorCobrar mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
 		CuentasPorCobrar cuentasXcobrar= new CuentasPorCobrar();
 		cuentasXcobrar.setCod_alumno(rs.getString("cod_alumno"));
 		cuentasXcobrar.setApe_paterno(rs.getString("ape_paterno"));

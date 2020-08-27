@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.component.FloatFormat;
-import edu.moduloalumno.entity.UsuarioJOINAlumnoPrograma;
 import edu.moduloalumno.entity.UsuarioJOINPerfil;
 import edu.moduloalumno.service.IUsuarioJOINPerfilService;
 

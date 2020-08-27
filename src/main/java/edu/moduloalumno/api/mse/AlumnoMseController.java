@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.moduloalumno.entity.Programa;
 import edu.moduloalumno.entity.mse.AlumnoMse;
 import edu.moduloalumno.entity.mse.CmbProgramas;
 import edu.moduloalumno.entity.mse.ConProgramaPorAlumno;

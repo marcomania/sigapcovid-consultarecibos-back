@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.moduloalumno.entity.ImporteAlumnoObligaciones;
 import edu.moduloalumno.entity.NotificacionCorrelativo;
-import edu.moduloalumno.entity.mse.AlumnoMse;
 import edu.moduloalumno.service.INotificacionCorrelativoService;
 
 @RestController

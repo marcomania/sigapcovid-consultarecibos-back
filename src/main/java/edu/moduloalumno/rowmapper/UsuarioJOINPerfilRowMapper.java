@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import edu.moduloalumno.entity.UsuarioJOINPerfil;
 
-
 public class UsuarioJOINPerfilRowMapper implements RowMapper<UsuarioJOINPerfil>{
 
 	@Override
@@ -18,8 +17,7 @@ public class UsuarioJOINPerfilRowMapper implements RowMapper<UsuarioJOINPerfil>{
 		usuarioJOINPerfil.setUserName(rs.getString("user_name"));
 		usuarioJOINPerfil.setPass(rs.getString("pass"));
 		usuarioJOINPerfil.setEstadoUp(rs.getBoolean("estado_up"));
-		usuarioJOINPerfil.setPerfil(rs.getInt("id_perfil"));
+		usuarioJOINPerfil.setIdPerfil(rs.getInt("id_perfil"));
 		return usuarioJOINPerfil;
 	}
-
 }

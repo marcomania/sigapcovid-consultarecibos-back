@@ -9,13 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.moduloalumno.entity.mse.AlumnoMse;
 import edu.moduloalumno.entity.mse.Facultad;
 import edu.moduloalumno.entity.mse.Programa;
 import edu.moduloalumno.entity.mse.TipoGrado;
@@ -25,12 +23,14 @@ import edu.moduloalumno.service.mse.IProgramaService;
 @RequestMapping("/mse/programa")
 public class ProgramaController {
 	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private IProgramaService service;
 	
 	@RequestMapping(value = "/listarProgramas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Programa>> listarPrograma() {
-		System.out.println("ENTRO A LISTAR PROGRAMA");
+		logger.info("> listarPrograma [List<Programa>]");
 		List<Programa> listaPrograma=null;
 		try {
 			listaPrograma = service.listarProgramas();
@@ -49,7 +49,8 @@ public class ProgramaController {
 	
 	@RequestMapping(value = "/listarTipoGrado", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<TipoGrado>> listarTipoGrado() {
-		System.out.println("ENTRO A LISTAR tipo de grado");
+
+		logger.info("> listarTipoGrado [List<TipoGrado>]");
 		List<TipoGrado> listaTipoGrado=null;
 		try {
 			listaTipoGrado = service.listarTipoGrado();
@@ -70,9 +71,9 @@ public class ProgramaController {
 	
 	@RequestMapping(value="/agregarPrograma",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void agregarPrograma(@RequestBody Programa programa, BindingResult result) {
-		System.out.println("Entro a agregar Programa");
-		System.out.println(programa);
-		System.out.println("************************");
+		logger.info("> agregarPrograma []");
+		logger.info("> programa: "+ programa.toString());
+
 		if(result.hasErrors()){
 	      System.out.println("Tieene errores");            
 	     }
@@ -82,9 +83,9 @@ public class ProgramaController {
 	
 	@RequestMapping(value="/agregarFacultad",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public void agregarFacultad(@RequestBody Facultad facultad, BindingResult result) {
-		System.out.println("Entro a agregar Facultad");
-		System.out.println(facultad);
-		System.out.println("************************");
+		logger.info("> agregarPrograma []");
+		logger.info("> facultad: "+ facultad.toString());
+		
 		if(result.hasErrors()){
 	      System.out.println("Tieene errores");            
 	     }

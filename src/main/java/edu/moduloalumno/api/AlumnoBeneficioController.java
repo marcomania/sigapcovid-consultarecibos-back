@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.moduloalumno.component.FloatFormat;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficio;
 import edu.moduloalumno.entity.AlumnoProgramaBeneficioCon;
-import edu.moduloalumno.entity.BeneficioReporteCiclo;
 import edu.moduloalumno.entity.BeneficioReporteCredito;
 import edu.moduloalumno.entity.CondicionBeneficio;
 import edu.moduloalumno.entity.TipoAplicaBeneficio;
@@ -46,7 +45,7 @@ public class AlumnoBeneficioController {
 
 	@RequestMapping(value = "/listar/{codigo}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AlumnoProgramaBeneficioCon>> getAllAlumnoBeneficio(@PathVariable("codigo") String codigo) {
-		logger.info(">> AlumnoBeneficio <<");
+		logger.info("> getAllAlumnoBeneficio [List<AlumnoProgramaBeneficioCon>]");
 
 		List<AlumnoProgramaBeneficioCon> list = null;
 		try {
@@ -218,7 +217,7 @@ public class AlumnoBeneficioController {
 					breporte.setD_total(floatformat.round(breporte.getD_total(), 2));
 					breporte.setD_upg(floatformat.round(breporte.getD_upg(), 2));
 					
-					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
+					breporte.setD_total2(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
 					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
 					
 					breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*descuento(codigo)),2));
@@ -228,7 +227,7 @@ public class AlumnoBeneficioController {
 				else {
 					//sin beneficio
 					breporte = alumnobeneficioservice.funcionDescuento(codigo,0,id_programa);
-					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
+					breporte.setD_total2(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
 					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
 					breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*0),2));
 					
@@ -275,7 +274,7 @@ public class AlumnoBeneficioController {
 					breporte.setD_total(floatformat.round(breporte.getD_total(), 2));
 					breporte.setD_upg(floatformat.round(breporte.getD_upg(), 2));
 					
-					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
+					breporte.setD_total2(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
 					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
 					
 					breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*descuento(codigo)),2));
@@ -285,7 +284,7 @@ public class AlumnoBeneficioController {
 				else {
 					//sin beneficio
 					breporte = alumnobeneficioservice.funcionDescuento(codigo,0,id_programa);
-					breporte.setD_Total(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
+					breporte.setD_total2(floatformat.round(breporte.getD_upg()+breporte.getD_epg()+breporte.getD_total(), 2));
 					breporte.set_Total(breporte.getEpg()+breporte.getUpg()+breporte.getTotal());
 					breporte.setCosto_credito_d(floatformat.round(breporte.getCosto_credito()-(breporte.getCosto_credito()*0),2));
 					

@@ -13,11 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.moduloalumno.dao.impl.ImporteAlumnoObligacionesDAOImpl;
-import edu.moduloalumno.entity.Alumno;
 import edu.moduloalumno.entity.ImporteAlumnoObligaciones;
 import edu.moduloalumno.service.IImporteAlumnoObligacionesService;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +27,6 @@ public class ImporteAlumnoObligacionesController {
 
 	@Autowired
 	private IImporteAlumnoObligacionesService service;
-	private ImporteAlumnoObligacionesDAOImpl dao;
     		
         @RequestMapping(value = "/listar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ImporteAlumnoObligaciones>> getAllImporteAlumnosObligaciones() {

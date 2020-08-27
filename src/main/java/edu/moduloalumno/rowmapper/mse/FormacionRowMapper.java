@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import edu.moduloalumno.entity.mse.Formacion;
-import edu.moduloalumno.entity.mse.PersonaCorreo;
 
 public class FormacionRowMapper implements RowMapper<Formacion>{
 

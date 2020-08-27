@@ -11,7 +11,7 @@ public class UbicacionsRowMapper implements RowMapper<Ubicacions>{
 	@Override
 	public Ubicacions mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Ubicacions ubicacions = new Ubicacions();
-		ubicacions.setId_Ubicacion(rs.getString("id_ubicacion"));
+		ubicacions.setId_ubicacion(rs.getString("id_ubicacion"));
 		ubicacions.setDescripcion(rs.getString("descripcion"));
 		return ubicacions;
 	}

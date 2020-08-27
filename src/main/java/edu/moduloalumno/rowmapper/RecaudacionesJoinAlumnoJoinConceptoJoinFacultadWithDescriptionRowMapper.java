@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 import edu.moduloalumno.entity.RecaudacionesJOINAlumnoJOINConceptoJOINFacultad;
-import edu.moduloalumno.entity.RecaudacionesJoinAlumnoJoinConceptoJoinFacultadWithDescription;
 
 public class RecaudacionesJoinAlumnoJoinConceptoJoinFacultadWithDescriptionRowMapper implements RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> {
 

@@ -4,9 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
-import edu.moduloalumno.entity.mse.AlumnoMse;
 import edu.moduloalumno.entity.mse.CmbProgramas;
-import edu.moduloalumno.entity.mse.ConProgramaPorAlumno;
 
 public class CmbProgramasRowMapper implements RowMapper<CmbProgramas> {
 	@Override
