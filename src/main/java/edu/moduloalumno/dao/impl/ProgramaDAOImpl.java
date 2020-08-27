@@ -39,7 +39,7 @@ public class ProgramaDAOImpl implements IProgramaDAO {
 		// Add programa
 		String sql = "INSERT INTO programa (id_programa, nom_programa, sigla_programa, vigencia_programa, id_tip_grado) values (?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, programa.getIdPrograma(), programa.getNomPrograma(), programa.getSiglaPrograma(),
-				programa.getVigenciaPrograma(), programa.getIdTipGrado());
+				programa.isVigenciaPrograma(), programa.getIdTipGrado());
 
 		// Fetch programa id
 		sql = "SELECT id_programa FROM programa WHERE id_programa = ?";
@@ -52,7 +52,7 @@ public class ProgramaDAOImpl implements IProgramaDAO {
 	@Override
 	public void updatePrograma(Programa programa) {
 		String sql = "UPDATE programa SET nom_programa = ?, sigla_programa = ?, vigencia_programa = ?, id_tip_grado = ? WHERE id_programa = ?";
-		jdbcTemplate.update(sql, programa.getNomPrograma(), programa.getSiglaPrograma(), programa.getVigenciaPrograma(),
+		jdbcTemplate.update(sql, programa.getNomPrograma(), programa.getSiglaPrograma(), programa.isVigenciaPrograma(),
 				programa.getIdTipGrado(), programa.getIdPrograma());
 	}
 

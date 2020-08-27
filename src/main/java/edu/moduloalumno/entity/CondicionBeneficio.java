@@ -17,7 +17,4 @@ public class CondicionBeneficio {
 	public void setCondicion(String condicion) {
 		this.condicion = condicion;
 	}
-	
-	
-	
 }

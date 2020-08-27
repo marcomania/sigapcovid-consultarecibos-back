@@ -14,15 +14,13 @@ spring:
     port: 587
     username: tucorreo@unmsm.edu.pe
     password: tuclave
-    
-    
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
-  
+
   datasource:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://67.205.143.180/tcs7
@@ -32,6 +30,12 @@ spring:
     properties:
       hibernate.temp.use_jdbc_metadata_defaults: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  banner:
+      location: classpath:/example/banner.txt
+  mvc:
+    contentnegotiation:
+      media-types:
+        xlsx: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
 
 server:
    port: 8080
@@ -40,12 +44,8 @@ eureka:
   client:
     serviceUrl:
       defaultZone: https://modulo-alumno-eureka.herokuapp.com/eureka #http://localhost:8761/eureka/
+    register-with-eureka: false
+    fetch-registry: false
   instance:
     hostname: localhost
     nonSecurePort: 8080
-
-banner:
-  location: classpath:/example/banner.txt
- 
-spring.mvc.contentnegotiation.media-types.xlsx : application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-
