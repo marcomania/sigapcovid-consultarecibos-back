@@ -3,6 +3,10 @@ package edu.moduloalumno.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,7 @@ import edu.moduloalumno.service.IAlumnoAlumnoProgramaService;
 
 @RestController
 @RequestMapping("/alumnoalumnoprograma")
+@Api(value="Alumno-AlumnoPrograma", description="Gestion de Alumno AlumnoPrograma")
 public class AlumnoAlumnoProgramaController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -28,7 +33,9 @@ public class AlumnoAlumnoProgramaController {
 	private IAlumnoAlumnoProgramaService service;
 	
 	@RequestMapping(value = "/buscar/{idAlum}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AlumnoAlumnoPrograma> getAlumnoAlumnoProgramaById(@PathVariable("idAlum") Integer idAlum) {
+	@ApiOperation(value="Retorna Los programas de un Alumno por su codigo", response = AlumnoAlumnoPrograma.class)
+	public ResponseEntity<AlumnoAlumnoPrograma> getAlumnoAlumnoProgramaById(
+		@ApiParam(value = "Codigo del Alumno",required=true) @PathVariable("idAlum") Integer idAlum) {
 		logger.info("> getAlumnoAlumnoProgramaById [AlumnoAlumnoPrograma]");
 
 		AlumnoAlumnoPrograma alum = null;

@@ -33,23 +33,23 @@ public class UsuarioJOINAlumnoProgramaController {
 	
 	@RequestMapping(value = "/buscar/{userName}/{pass}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UsuarioJOINAlumnoPrograma> getUsuarioJOINAlumnoProgramaByUserPass(@PathVariable("userName") String userName,@PathVariable("pass") String pass) {
-		logger.info("> getUsuarioJOINAlumnoProgramaByUserPass [UsuarioJOINAlumnoPrograma]");
+		logger.info("> getUsuarioJOINAlumnoProgramaByUserPass - [UsuarioJOINAlumnoPrograma]");
 
 		UsuarioJOINAlumnoPrograma usuario = null;
 		try {	
 			
 			usuario = usuarioJOINAlumnoProgramaService.getUsuarioJOINAlumnoProgramaByUserPass(userName,pass);
-			System.out.println(usuario);
+			logger.info("- getUsuarioJOINAlumnoProgramaByUserPass - [" + usuario + "]");
 			if (usuario == null) {
 				usuario = new UsuarioJOINAlumnoPrograma();
 			}
 			
 		} catch (Exception e) {
-			logger.error("Unexpected Exception caught.", e);
+			logger.error("getUsuarioJOINAlumnoProgramaByUserPass - Unexpected Exception caught.", e);
 			return new ResponseEntity<UsuarioJOINAlumnoPrograma>(usuario, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		logger.info("< getUsuarioJOINAlumnoProgramaByUserPass [UsuarioJOINAlumnoPrograma]");
+		logger.info("< getUsuarioJOINAlumnoProgramaByUserPass - [UsuarioJOINAlumnoPrograma]");
 		return new ResponseEntity<UsuarioJOINAlumnoPrograma>(usuario, HttpStatus.OK);
 	}
 	

@@ -2,6 +2,8 @@ package edu.moduloalumno.dao.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -15,22 +17,33 @@ import edu.moduloalumno.rowmapper.AlumnoProgramaRowMapper;
 @Transactional
 @Repository
 public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public AlumnoPrograma getAlumnoProgramaById(String codAlumno) {
+		logger.info("> getAlumnoProgramaById [AlumnoPrograma]");
+
 		String sql = "SELECT ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, " + 
 		"ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, "+
 		"ap.id_programa,p.nom_programa,p.sigla_programa ,p.id_tip_grado "
 		+ "FROM alumno_programa ap,programa p WHERE (ap.id_programa = p.id_programa) and (cod_alumno = ?)";
+
+		logger.info("> getAlumnoProgramaById Tx["+sql+"]");
+
 		RowMapper<AlumnoPrograma> rowMapper =  new AlumnoProgramaRowMapper();//new BeanPropertyRowMapper<AlumnoPrograma>(AlumnoPrograma.class);
 		AlumnoPrograma alumnoPrograma = jdbcTemplate.queryForObject(sql, rowMapper, codAlumno);
+
+		logger.info("< getAlumnoProgramaById [AlumnoPrograma]");
 		return alumnoPrograma;
 	}
 	
 	@Override
 	public List<AlumnoPrograma> getAlumnoProgramaByDni(String dni) {
+		logger.info("> getAlumnoProgramaByDni [AlumnoPrograma]");
+
 		String sql = "SELECT ap.cod_alumno, ap.ape_paterno, ap.ape_materno, ap.nom_alumno, " + 
 		"ap.cod_especialidad, ap.cod_tip_ingreso, ap.cod_situ, ap.cod_perm, ap.anio_ingreso, ap.dni_m, " + 
 		"ap.id_programa, p.nom_programa, p.sigla_programa, p.id_tip_grado " + 
@@ -38,8 +51,13 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 		"on (ap.id_programa = p.id_programa) " + 
 		"WHERE (dni_m = ?) " ;		
 
+		logger.info("- getAlumnoProgramaByDni Tx["+sql+"]");
+
 		RowMapper<AlumnoPrograma> rowMapper =  new AlumnoProgramaRowMapper();//new BeanPropertyRowMapper<AlumnoPrograma>(AlumnoPrograma.class);
+
+		logger.info("< getAlumnoProgramaByDni [AlumnoPrograma]");
 		return this.jdbcTemplate.query(sql, rowMapper, dni);
+
 	}	
 
 	@Override

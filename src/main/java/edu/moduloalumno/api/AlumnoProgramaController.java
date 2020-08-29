@@ -3,6 +3,10 @@ package edu.moduloalumno.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,7 @@ import edu.moduloalumno.service.IAlumnoProgramaService;
 
 @RestController
 @RequestMapping("/alumnoprograma")
+@Api(value="AlumnoPrograma", description="Gestion de Pogramas del Alumno")
 public class AlumnoProgramaController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -135,7 +140,9 @@ public class AlumnoProgramaController {
 	
 	
 	@RequestMapping(value = "/buscard/{dni}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AlumnoPrograma>> getAlumnoProgramaByDni(@PathVariable("dni") String dni) {
+	@ApiOperation(value="Retorna Los programas de un Alumno por su DNI", response = AlumnoPrograma.class)
+	public ResponseEntity<List<AlumnoPrograma>> getAlumnoProgramaByDni(
+		@ApiParam(value = "DNI del Alumno",required=true) @PathVariable("dni") String dni) {
 		logger.info("> getAlumnoProgramaByDni [DNI]");
 
 		List<AlumnoPrograma> list = null;

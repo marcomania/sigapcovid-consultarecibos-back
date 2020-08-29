@@ -1,9 +1,3 @@
-amazonProperties:
-   endpointUrl: https://s3.us-east-1.amazonaws.com
-   accessKey: AKIATHMYRW25AOONQYTX
-   secretKey: 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
-   bucketName: imgvidco
-
 spring:
   servlet:
     multipart:
@@ -36,6 +30,9 @@ spring:
     contentnegotiation:
       media-types:
         xlsx: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  output:
+    ansi:
+      enabled: always
 
 server:
    port: 8080
@@ -49,3 +46,15 @@ eureka:
   instance:
     hostname: localhost
     nonSecurePort: 8080
+
+aws:
+  services:
+    bucket: "imgvidco"
+
+cloud:
+  aws:
+    stack.auto: false
+    region.static: "us-east-1"
+    credentials:
+      accessKey: "AKIATHMYRW25AOONQYTX"
+      secretKey: "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"

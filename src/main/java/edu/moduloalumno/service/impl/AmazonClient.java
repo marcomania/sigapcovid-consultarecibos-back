@@ -10,7 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
-import javax.annotation.PostConstruct;
 import java.io.ByteArrayOutputStream;
 
 import org.slf4j.Logger;
@@ -35,23 +34,23 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import edu.moduloalumno.entity.FileAWS;
-//import com.org.tech.s3poc.FileAWS;
 import java.io.InputStream;
 import java.util.ArrayList;
-//import com.amazonaws.services.s3.model.S3Object;
+
+import javax.annotation.PostConstruct;
 
 @Service
 public class AmazonClient {
 
-    private AmazonS3 s3client;
+    private AmazonS3  s3client;
 
-    @Value("${amazonProperties.endpointUrl}")
-    private String endpointUrl;
-    @Value("${amazonProperties.bucketName}")
+    @Value("${aws.services.bucket}")
     private String bucketName;
-    @Value("${amazonProperties.accessKey}")
+    private String endpointUrl="https://s3.us-east-1.amazonaws.com";
+    
+    @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
-    @Value("${amazonProperties.secretKey}")
+    @Value("${cloud.aws.credentials.secretKey}")
     private String secretKey;
 
     private Logger logger = LoggerFactory.getLogger(AmazonClient.class);
@@ -61,7 +60,6 @@ public class AmazonClient {
         AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
         this.s3client = new AmazonS3Client(credentials);
     }
-
     public String uploadFile(String id, MultipartFile multipartFile) throws IOException {
 
         String fileUrl = "";
