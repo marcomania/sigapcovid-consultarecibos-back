@@ -61,14 +61,14 @@ public class AmazonClient {
 		this.s3client = new AmazonS3Client(credentials);
 	}
 
-	public String uploadFile(String prioridad,String anioIngreso,String idNombre,MultipartFile multipartFile) throws IOException {
+	public String uploadFile(String prioridad,String anioIngreso,String idNombre,String idRecaudacion,MultipartFile multipartFile) throws IOException {
 
 		String fileUrl = "";
 		try {
 			File file = convertMultiPartToFile(multipartFile);
 			String fileName = generateFileName(multipartFile);
 			fileUrl = endpointUrl + "/" + bucketName + "/" + idNombre+"/"+fileName;
-			uploadFileTos3bucket(prioridad,anioIngreso,idNombre,fileName, file);
+			uploadFileTos3bucket(prioridad,anioIngreso,idNombre,idRecaudacion,fileName, file);
 			file.delete();
 		} /*catch (Exception e) {
 			e.printStackTrace();
@@ -99,10 +99,10 @@ public class AmazonClient {
 		return "Successfully deleted";
 	}
         
-        public ArrayList<FileAWS> getFileFromFolder(String prioridad,String anioIngreso,String folderName){
+        public ArrayList<FileAWS> getFileFromFolder(String prioridad,String anioIngreso,String idNombre,String folderName){
         
             ArrayList<FileAWS> listaFromFolder= new ArrayList<FileAWS>();
-            ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withPrefix("01.POSGRADO/02.UPG.FISI.CARPETAS.ALUMNOS/"+prioridad+"/"+anioIngreso+"/"+folderName+"/").withDelimiter("/");
+            ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(bucketName).withPrefix("01.POSGRADO/02.UPG.FISI.CARPETAS.ALUMNOS/"+prioridad+"/"+anioIngreso+"/"+idNombre+"/"+folderName+"/").withDelimiter("/");
             ListObjectsV2Result listing = s3client.listObjectsV2(req);
             for (String commonPrefix : listing.getCommonPrefixes()) {
                 
@@ -169,9 +169,9 @@ public class AmazonClient {
     }
 	
         
-        private void uploadFileTos3bucket(String prioridad,String anioIngreso,String idNombre,String fileName, File file) {
+        private void uploadFileTos3bucket(String prioridad,String anioIngreso,String idNombre,String idRecaudacion,String fileName, File file) {
 		s3client.putObject(
-				new PutObjectRequest(bucketName, "01.POSGRADO/02.UPG.FISI.CARPETAS.ALUMNOS/"+prioridad+"/"+anioIngreso+"/"+idNombre+"/"+fileName, file).withCannedAcl(CannedAccessControlList.PublicRead));
+				new PutObjectRequest(bucketName, "01.POSGRADO/02.UPG.FISI.CARPETAS.ALUMNOS/"+prioridad+"/"+anioIngreso+"/"+idNombre+"/"+idRecaudacion+"/"+fileName, file).withCannedAcl(CannedAccessControlList.PublicRead));
 	}
 
 	private String generateFileName(MultipartFile multiPart) {

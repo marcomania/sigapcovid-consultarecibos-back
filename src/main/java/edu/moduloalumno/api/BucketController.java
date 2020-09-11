@@ -48,9 +48,9 @@ public class BucketController {
 		return this.amazonClient.uploadFile(file);
 	}*/
         
-        @PostMapping("/uploadFile/{prioridad}/{anioIngreso}/{idNombre}")
-	public String uploadFile(@PathVariable String idNombre,@PathVariable String prioridad,@PathVariable String anioIngreso,@RequestPart(value = "file") MultipartFile file) throws IOException {
-		return this.amazonClient.uploadFile(prioridad,anioIngreso,idNombre,file);
+        @PostMapping("/uploadFile/{prioridad}/{anioIngreso}/{idNombre}/{idRecaudacion}")
+	public String uploadFile(@PathVariable String idNombre,@PathVariable String prioridad,@PathVariable String anioIngreso,@PathVariable String idRecaudacion,@RequestPart(value = "file") MultipartFile file) throws IOException {
+		return this.amazonClient.uploadFile(prioridad,anioIngreso,idNombre,idRecaudacion,file);
 	}
 
 	@DeleteMapping("/deleteFile")
@@ -74,16 +74,16 @@ public class BucketController {
 
     }
         
-        @GetMapping(path = "/getFileFromFolder/{prioridad}/{anioIngreso}/{idNombre}")
-        public ResponseEntity<ArrayList<FileAWS>> getFileFromFolder(@PathVariable String idNombre,@PathVariable String prioridad,@PathVariable String anioIngreso)  {
+        @GetMapping(path = "/getFileFromFolder/{prioridad}/{anioIngreso}/{idNombre}/{idRecaudacion}")
+        public ResponseEntity<ArrayList<FileAWS>> getFileFromFolder(@PathVariable String idNombre,@PathVariable String prioridad,@PathVariable String anioIngreso,@PathVariable String idRecaudacion)  {
         /*byte[] data = s3Factory.getFile(file);
         ByteArrayResource resource = new ByteArrayResource(data);*/
-            String keyname = idNombre;
+            String keyname = idRecaudacion;
             ArrayList<FileAWS> list = null;
             //ByteArrayOutputStream downloadInputStream= amazonClient.getFileFromFolder(keyname);
             //ByteArrayResource resource = new ByteArrayResource(data);
             try {
-			list = amazonClient.getFileFromFolder(prioridad,anioIngreso,keyname);
+			list = amazonClient.getFileFromFolder(prioridad,anioIngreso,idNombre,keyname);
 			
 			if (list == null) {
 				list = new ArrayList<FileAWS>();
