@@ -56,5 +56,5 @@ cloud:
     stack.auto: false
     region.static: "us-east-1"
     credentials:
-      accessKey: "AKIATHMYRW25IH2CX7N"
+      accessKey: "AKIATHMYRW25IH2CX7NZ"
       secretKey: "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"
