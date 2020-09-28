@@ -42,7 +42,7 @@ public class UsuarioJOINAlumnoProgramaDAOImpl implements IUsuarioJOINAlumnoProgr
 				+ " from  usuario us join alumno_programa ap " + " ON (us.user_name = ap.dni_m )"
 				+ " where (us.user_name ='" + userName + "') and (us.pass ='" + pas1 + "' or  us.pass ='" + pass + "') limit 1;";
 
-		logger.debug("- getUsuarioJOINAlumnoProgramaByUserPass Tx["+sql+"]");
+		logger.info("- getUsuarioJOINAlumnoProgramaByUserPass Tx["+sql+"]");
 
 		RowMapper<UsuarioJOINAlumnoPrograma> rowMap = new BeanPropertyRowMapper<UsuarioJOINAlumnoPrograma>(
 				UsuarioJOINAlumnoPrograma.class);

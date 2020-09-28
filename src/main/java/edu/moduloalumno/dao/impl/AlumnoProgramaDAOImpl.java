@@ -57,7 +57,6 @@ public class AlumnoProgramaDAOImpl implements IAlumnoProgramaDAO {
 
 		logger.info("< getAlumnoProgramaByDni [AlumnoPrograma]");
 		return this.jdbcTemplate.query(sql, rowMapper, dni);
-
 	}	
 
 	@Override

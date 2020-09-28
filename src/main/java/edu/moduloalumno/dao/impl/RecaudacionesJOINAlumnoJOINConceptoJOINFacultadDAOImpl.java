@@ -182,8 +182,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		return this.jdbcTemplate.query(sql, rowMapper, nomApe);
 	}// under claass
         
-        @Override
-		public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo) {		
+    @Override
+	public List<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo(String codigo) {		
         	
 		String sql="select r.id_tipo_recaudacion as r_id_tipo_recaudacion,c.id_tipo_recaudacion as c_id_tipo_recaudacion, "+
 		"CASE "+
@@ -216,6 +216,8 @@ public class RecaudacionesJOINAlumnoJOINConceptoJOINFacultadDAOImpl implements I
 		"left outer join sunat_sintipocambio s on (r.fecha = s.fecha) " +   
 		"where to_tsquery(?) @@ to_tsvector(coalesce(ap.cod_alumno,'') || ' ') " +   
 		"order by c.concepto, r.fecha";
+		
+		logger.info("- getRecaudacionesJOINAlumnoJOINConceptoJOINFacultadByCodigo Tx["+sql+"]");
 
 		RowMapper<RecaudacionesJOINAlumnoJOINConceptoJOINFacultad> rowMapper = new RecaudacionesJoinAlumnoJoinConceptoJoinFacultadWithDescriptionRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, codigo);

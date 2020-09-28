@@ -13,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.moduloalumno.entity.AlumnoPrograma;
@@ -31,8 +31,10 @@ public class AlumnoProgramaController {
 	@Autowired
 	private IAlumnoProgramaService service;
 
-	@RequestMapping(value = "/leer/{nombresApellidos}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AlumnoPrograma>> getAlumnoProgramasIdByNombresApellidos(@PathVariable("nombresApellidos") String nombresApellidos) {
+	@ApiOperation(value="Retorna todos los programas de un Alumno por sus nombres y apellidos", response = AlumnoPrograma.class)
+	@GetMapping(value = "/leer/{nombresApellidos}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AlumnoPrograma>> getAlumnoProgramasIdByNombresApellidos(
+		@ApiParam(value = "Nombres y apellidos del Alumno",required=true) @PathVariable("nombresApellidos") String nombresApellidos) {
 		logger.info("> getAlumnoProgramasIdByNombresApellidos [AlumnoPrograma]");
 
 		List<AlumnoPrograma> list = null;
@@ -52,8 +54,11 @@ public class AlumnoProgramaController {
 		return new ResponseEntity<List<AlumnoPrograma>>(list, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/leer/{codAlum}/{idProg}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AlumnoPrograma>> getAlumnoProgramasIdByCodAlumIdProg(@PathVariable("codAlum") String codAlum,@PathVariable("idProg") Integer idProg) {
+	@ApiOperation(value="Retorna un programa de un Alumno por su Codigo", response = AlumnoPrograma.class)
+	@GetMapping(value = "/leer/{codAlum}/{idProg}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AlumnoPrograma>> getAlumnoProgramasIdByCodAlumIdProg(
+		@ApiParam(value = "Codigo del Alumno",required=true) @PathVariable("codAlum") String codAlum,
+		@ApiParam(value = "Id del programa",required=true) @PathVariable("idProg") Integer idProg) {
 		logger.info("> getAlumnoProgramasIdByCodAlumIdProg [AlumnoPrograma]");
 
 		List<AlumnoPrograma> list = null;
@@ -73,8 +78,10 @@ public class AlumnoProgramaController {
 		return new ResponseEntity<List<AlumnoPrograma>>(list, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/leer/restringido/{nombresApellidos}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AlumnoPrograma>> getAlumnoProgramasIdByNombresApellidosRestringido(@PathVariable("nombresApellidos") String nombresApellidos) {
+	@ApiOperation(value="Retorna todos los programas de un Alumno por sus nombres y apellidos", response = AlumnoPrograma.class)
+	@GetMapping(value = "/leer/restringido/{nombresApellidos}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<AlumnoPrograma>> getAlumnoProgramasIdByNombresApellidosRestringido(
+		@ApiParam(value = "Nombres y apellidos del Alumno",required=true) @PathVariable("nombresApellidos") String nombresApellidos) {
 		logger.info("> getAlumnoProgramasIdByNombresApellidosRestringido [AlumnoPrograma]");
 
 		List<AlumnoPrograma> list = null;
@@ -94,7 +101,8 @@ public class AlumnoProgramaController {
 		return new ResponseEntity<List<AlumnoPrograma>>(list, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value="Retorna todos programas de todos los Alumnos", response = AlumnoPrograma.class)
+	@GetMapping(value = "/listar", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AlumnoPrograma>> getAllAlumnoPrograma() {
 		logger.info("> getAlumnoProgramasIdByNombresApellidosRestringido [AlumnoPrograma]");
 
@@ -115,10 +123,10 @@ public class AlumnoProgramaController {
 		return new ResponseEntity<List<AlumnoPrograma>>(list, HttpStatus.OK);
 	}
 	
-	
-	
-	@RequestMapping(value = "/buscarc/{codAlumno}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<AlumnoPrograma> getAlumnoProgramaByCodAlumno(@PathVariable("codAlumno") String codAlumno) {
+	@ApiOperation(value="Retorna todos los programas de un Alumno por su Codigo", response = AlumnoPrograma.class)
+	@GetMapping(value = "/buscarc/{codAlumno}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<AlumnoPrograma> getAlumnoProgramaByCodAlumno(
+		@ApiParam(value = "Codigo del Alumno",required=true) @PathVariable("codAlumno") String codAlumno) {
 		logger.info("> getAlumnoProgramaByCodAlumno [AlumnoPrograma]");
 
 		AlumnoPrograma alum = null;
@@ -138,9 +146,8 @@ public class AlumnoProgramaController {
 		return new ResponseEntity<AlumnoPrograma>(alum, HttpStatus.OK);
 	}
 	
-	
-	@RequestMapping(value = "/buscard/{dni}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value="Retorna Los programas de un Alumno por su DNI", response = AlumnoPrograma.class)
+	@ApiOperation(value="Retorna todos los programas de un Alumno por su DNI", response = AlumnoPrograma.class)
+	@GetMapping(value = "/buscard/{dni}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AlumnoPrograma>> getAlumnoProgramaByDni(
 		@ApiParam(value = "DNI del Alumno",required=true) @PathVariable("dni") String dni) {
 		logger.info("> getAlumnoProgramaByDni [DNI]");
@@ -161,5 +168,4 @@ public class AlumnoProgramaController {
 		logger.info("< getAlumnoProgramaByCodAlumno [AlumnoPrograma]");
 		return new ResponseEntity<List<AlumnoPrograma>>(list, HttpStatus.OK);
 	}
-
 }

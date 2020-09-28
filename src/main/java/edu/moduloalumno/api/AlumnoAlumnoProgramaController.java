@@ -31,7 +31,15 @@ public class AlumnoAlumnoProgramaController {
 
 	@Autowired
 	private IAlumnoAlumnoProgramaService service;
-	
+
+	// Match everything without a suffix (so not a static resource)
+	@RequestMapping(value = "/**/{path:[^.]*}")       
+	public String redirect() {
+		// Forward to home page so that route is preserved.
+		return "forward:/swagger-ui.html";
+	}
+
+
 	@RequestMapping(value = "/buscar/{idAlum}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Retorna Los programas de un Alumno por su codigo", response = AlumnoAlumnoPrograma.class)
 	public ResponseEntity<AlumnoAlumnoPrograma> getAlumnoAlumnoProgramaById(
